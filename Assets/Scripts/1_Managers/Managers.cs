@@ -5,6 +5,7 @@ using System.Resources;
 using TMPro.EditorUtilities;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Managers : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Managers : MonoBehaviour
     ResourceManager resource = new ResourceManager();
     SoundManager sound = new SoundManager();
     UIManager ui = new UIManager();
+    PlayerInputManager input;
 
     public static GameObject SoundRoot { get; private set; }
 
@@ -25,6 +27,11 @@ public class Managers : MonoBehaviour
     public static PoolManager Pool { get { return Instance?.pool; } }
     public static ResourceManager Resource { get { return Instance?.resource; } }
     public static SoundManager Sound { get { return Instance?.sound; } }
+    public static PlayerInputManager Input
+    {
+        get => Instance?.input;
+        set { Instance.input = value; } 
+    }
     public static UIManager UI { get { return Instance?.ui; } }
 
     // Start is called before the first frame update

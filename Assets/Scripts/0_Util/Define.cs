@@ -2,6 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#region Associated with Input
+public enum InputDevices
+{
+    Keyboard,
+    Mouse,
+    Count,
+}
+public enum InputStatus
+{
+    Started,
+    Performed,
+    Canceled,
+    Count,
+}
+public enum ActionType
+{
+    Move,
+    Attack,
+    Evade,
+    Skill,
+    SkillB,
+    Count,
+}
+#endregion
 // This file contains all the enums
 public enum UIEvent
 {
@@ -13,6 +37,7 @@ public enum UIEvent
     EndDrag,
     Count
 }
+
 public enum SceneType
 {
     StartScene,
@@ -20,7 +45,7 @@ public enum SceneType
     Count,
 }
 
-//
+#region Sound Assets
 public enum Sounds
 {
     BGM,
@@ -65,6 +90,7 @@ public enum Clips
     Click,
     Count
 }
+#endregion
 public enum Tags
 {
     Player,
