@@ -2,25 +2,33 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputMovement : InputBehaviour
+public class InputMove : InputBase
 {
-    private void Start()
+//    private Rigidbody2D rb2D;
+    [SerializeField] float speed;
+
+    public InputMove()
     {
         Init();
-        PlayerInputManager inputManager = GetComponent<PlayerInputManager>();
-        inputManager.Inputs[(int)ActionType.Move].Action = action;
-        inputManager.Inputs[(int)ActionType.Move].Subscribers[InputStatus.Performed] += Movement;
-        inputManager.SubscribeToggle();
+        PlayerInputHandler inputHandler = Managers.Game.player.InputHandler;
+        inputHandler.data[(int)ActionType.Move].Action = action;
+//        inputHandler.data[(int)ActionType.Move].Subscribers[InputStatus.Performed] += Movement;
+//        inputHandler.data[(int)ActionType.Move].Subscribers[InputStatus.Canceled]  += Stop;
+        inputHandler.SubscribeToggle();
     }
 
     protected override void Init()
     {
         base.Init();
+
+//        rb2D = Managers.Game.player.GetComponent<Rigidbody2D>();
+        
         bindingConfig.Add(("Movement","2DVector"));
         bindingConfig.Add(("Up","w"));
         bindingConfig.Add(("Down","s"));
         bindingConfig.Add(("Left","a"));
         bindingConfig.Add(("Right","d"));
+        bindingConfig.Add(("Left Stick","leftStick"));
 
         action = new InputAction(nameof(ActionType.Move), InputActionType.Value);
         action.expectedControlType = nameof(Vector2);
@@ -44,6 +52,12 @@ public class InputMovement : InputBehaviour
                 bindings[i].isComposite = true; // is mother?
                 bindings[i].isPartOfComposite = false; // is child?
             }
+            else if (bindingConfig[i].name.Contains("Stick"))
+            {
+                bindings[i].path = $"<{nameof(InputDevices.Gamepad)}>/{bindingConfig[i].path}";
+                bindings[i].isComposite = false;
+                bindings[i].isPartOfComposite = true;
+            }
             else
             {
                 bindings[i].path = $"<{nameof(InputDevices.Keyboard)}>/{bindingConfig[i].path}";
@@ -54,8 +68,17 @@ public class InputMovement : InputBehaviour
             action.AddBinding(bindings[i]);
         }
     }
-    private void Movement(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Movement");
-    }
+
+//    private void Movement(InputAction.CallbackContext obj)
+//    {
+//        // Dont use `Time.deltaTime`
+//        // rb2D.velocity = speed * Time.deltaTime * obj.ReadValue<Vector2>().normalized;
+//        // rb2D.velocity = speed * Time.fixedDeltaTime * obj.ReadValue<Vector2>().normalized;
+//        rb2D.velocity = speed * obj.ReadValue<Vector2>().normalized;
+//    }
+//
+//    private void Stop(InputAction.CallbackContext obj)
+//    {
+//        rb2D.velocity = Vector2.zero;
+//    }
 }

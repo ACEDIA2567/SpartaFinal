@@ -18,20 +18,14 @@ public class Managers : MonoBehaviour
     ResourceManager resource = new ResourceManager();
     SoundManager sound = new SoundManager();
     UIManager ui = new UIManager();
-    PlayerInputManager input;
 
     public static GameObject SoundRoot { get; private set; }
 
-    public static DataManager Data { get { return instance?.data; } }
-    public static GamePlayManager Game { get { return instance?.game; } set { instance.game = value; } }
+    public static DataManager Data { get { return Instance?.data; } }
+    public static GamePlayManager Game { get { return Instance?.game; } set { Instance.game = value; } }
     public static PoolManager Pool { get { return Instance?.pool; } }
     public static ResourceManager Resource { get { return Instance?.resource; } }
     public static SoundManager Sound { get { return Instance?.sound; } }
-    public static PlayerInputManager Input
-    {
-        get => Instance?.input;
-        set { Instance.input = value; } 
-    }
     public static UIManager UI { get { return Instance?.ui; } }
 
     // Start is called before the first frame update

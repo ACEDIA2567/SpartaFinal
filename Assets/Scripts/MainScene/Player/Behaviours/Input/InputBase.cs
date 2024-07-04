@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 
-public abstract class InputBehaviour : MonoBehaviour
+public abstract class InputBase
 {
     protected InputAction action;
     protected InputBinding[] bindings;

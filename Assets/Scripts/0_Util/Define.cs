@@ -7,6 +7,7 @@ public enum InputDevices
 {
     Keyboard,
     Mouse,
+    Gamepad,
     Count,
 }
 public enum InputStatus
@@ -18,12 +19,20 @@ public enum InputStatus
 }
 public enum ActionType
 {
+    Idle,
     Move,
     Attack,
     Evade,
     Skill,
     SkillB,
     Count,
+}
+
+public enum AxisOptions
+{
+    Both,
+    Horizontal,
+    Vertical 
 }
 #endregion
 // This file contains all the enums

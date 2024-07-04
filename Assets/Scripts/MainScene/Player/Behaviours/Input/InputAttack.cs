@@ -3,15 +3,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InputAttack : InputBehaviour
+public class InputAttack : InputBase
 {
     private void Start()
     {
         Init();
-        PlayerInputManager inputManager = GetComponent<PlayerInputManager>();
-        inputManager.Inputs[(int)ActionType.Attack].Action = action;
-        inputManager.Inputs[(int)ActionType.Attack].Subscribers[InputStatus.Started] += Attack;
-        inputManager.SubscribeToggle();
+        PlayerInputHandler inputHandler = Managers.Game.player.InputHandler;
+        inputHandler.data[(int)ActionType.Attack].Action = action;
+        inputHandler.data[(int)ActionType.Attack].Subscribers[InputStatus.Started] += Attack;
+        inputHandler.SubscribeToggle();
     }
 
     protected override void Init()
