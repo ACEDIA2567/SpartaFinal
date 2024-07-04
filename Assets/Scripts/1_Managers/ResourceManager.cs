@@ -49,4 +49,20 @@ public class ResourceManager
         go.name = prefab.name;
         return go;
     }
+
+    public void Destroy(GameObject gameObject)
+    {
+        if (gameObject == null)
+            return;
+
+        //object pooling
+        Poolable poolable = gameObject.GetComponent<Poolable>();
+        if(poolable != null)
+        {
+            Managers.Pool.Push(gameObject);
+            return;
+        }
+
+        Object.Destroy(gameObject);
+    }
 }

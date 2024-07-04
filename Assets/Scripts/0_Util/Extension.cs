@@ -8,8 +8,8 @@ public static class Extension
     {
         return Util.GetOrAddComponent<T>(go);
     }
-    public static void BindEvent(this GameObject go, Action<PointerEventData> action, UIEvent type = UIEvent.Click)
+    public static void BindEvent(this GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
     {
-        UIBase.BindEvent(go,action,type);
+        UIBase.BindEvent(go, action, type);
     }
 }

@@ -1,107 +1,138 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.ComponentModel;
+using System.Reflection;
 using UnityEngine;
 
-// This file contains all the enums
-public enum UIEvent
+public class Define
 {
-    Click,
-    PointerDown,
-    PointerUp,
-    BeginDrag,
-    Drag,
-    EndDrag,
-    Count
-}
-public enum SceneType
-{
-    StartScene,
-    MainScene,
-    Count,
+    // This file contains all the enums
+    public enum UIEvent
+    {
+        Click,
+        PointerDown,
+        PointerUp,
+        BeginDrag,
+        Drag,
+        EndDrag,
+        Count
+    }
+    public enum SceneType
+    {
+        StartScene,
+        MainScene,
+        Count,
+        MaintenanceScene,
+    }
+
+    public enum Sounds
+    {
+        BGM,
+        Battle,
+        Start1,
+        Start2,
+        Start3,
+        Boom,
+        Smoke,
+        Bullet,
+        TankOn,
+        TankMove,
+        DestroyOn1,
+        DestroyOn2,
+        DestroyOn3,
+        DestroyOn4,
+        HitOn1,
+        HitOn2,
+        HitOn3,
+        Click,
+        Count
+    }
+    public enum Clips
+    {
+        BGM,
+        Battle,
+        Start1,
+        Start2,
+        Start3,
+        Boom,
+        Smoke,
+        Bullet,
+        TankOn,
+        TankMove,
+        DestroyOn1,
+        DestroyOn2,
+        DestroyOn3,
+        DestroyOn4,
+        HitOn1,
+        HitOn2,
+        HitOn3,
+        Click,
+        Count
+    }
+    public enum Tags
+    {
+        Player,
+        StartLine,
+        EndLine,
+        Map,
+        UI,
+        Obstacle,
+        Bullets,
+        Wire,
+        Destroyer,
+        Count,
+    }
+
+    public enum LayerMasks
+    {
+        Count,
+    }
+    public enum BuffType
+    {
+        SPEED_UP,
+    }
+
+    public enum AttackType
+    {
+        Normal,
+        Explosive,
+        Concussive,
+        Spell,
+        Count
+    }
+
+    public enum ArmorType
+    {
+        Small,
+        Medium,
+        Large,
+        Shield,
+        Count
+    }
+
+    public enum FilePath
+    {
+        [Description("")]
+        UI = 0,
+
+    }
 }
 
-//
-public enum Sounds
+public static class EnumUtil
 {
-    BGM,
-    Battle,
-    Start1,
-    Start2,
-    Start3,
-    Boom,
-    Smoke,
-    Bullet,
-    TankOn,
-    TankMove,
-    DestroyOn1,
-    DestroyOn2,
-    DestroyOn3,
-    DestroyOn4,
-    HitOn1,
-    HitOn2,
-    HitOn3,
-    Click,
-    Count
-}
-public enum Clips
-{
-    BGM,
-    Battle,
-    Start1,
-    Start2,
-    Start3,
-    Boom,
-    Smoke,
-    Bullet,
-    TankOn,
-    TankMove,
-    DestroyOn1,
-    DestroyOn2,
-    DestroyOn3,
-    DestroyOn4,
-    HitOn1,
-    HitOn2,
-    HitOn3,
-    Click,
-    Count
-}
-public enum Tags
-{
-    Player,
-    StartLine,
-    EndLine,
-    Map,
-    UI,
-    Obstacle,
-    Bullets,
-    Wire,
-    Destroyer,
-    Count,
-}
-public enum LayerMasks
-{
-    Count,
-}
-public enum BuffType
-{
-    SPEED_UP,
+    public static string ToDescription(this Enum source)
+    {
+        FieldInfo fi = source.GetType().GetField(source.ToString());
+        var att = (DescriptionAttribute)fi.GetCustomAttribute(typeof(DescriptionAttribute));
+
+        if (att != null)
+        {
+            return att.Description;
+        }
+        else
+        {
+            return source.ToString();
+        }
+    }
 }
 
-public enum AttackType
-{
-    Normal,
-    Explosive,
-    Concussive,
-    Spell,
-    Count
-}
-
-public enum ArmorType
-{
-    Small,
-    Medium,
-    Large,
-    Shield,
-    Count
-}
 
