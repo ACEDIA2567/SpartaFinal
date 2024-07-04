@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e7bf4a73c0c4f009a5c4dcd33ab39f, type: 3}
+  m_Name: Item1 29
+  m_EditorClassIdentifier: 
+  itemName: "\uAC80"
+  itemImage: {fileID: -453232475, guid: db621c0838c0a7549b8dfce90a70f604, type: 3}
+  soulCost: 1
+  description: "\uAC80"
+  rarity: 1
