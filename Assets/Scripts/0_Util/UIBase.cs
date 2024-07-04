@@ -46,7 +46,7 @@ public abstract class UIBase : MonoBehaviour
         return objects[idx] as T;
     }
 
-    public static void BindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
+    public static void BindEvent(GameObject go, Action<PointerEventData> action, UIEvent type = UIEvent.Click)
     {
         UIEventHandler evt = Util.GetOrAddComponent<UIEventHandler>(go);
 
@@ -66,37 +66,37 @@ public class UIEventHandler : MonoBehaviour,
     public Action<PointerEventData>[] OnPointerHandler = new Action<PointerEventData>[6] { null, null, null, null, null, null };
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)Define.UIEvent.Click] != null)
-            OnPointerHandler[(int)Define.UIEvent.Click].Invoke(eventData);
+        if (OnPointerHandler[(int)UIEvent.Click] != null)
+            OnPointerHandler[(int)UIEvent.Click].Invoke(eventData);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)Define.UIEvent.PointerDown] != null)
-            OnPointerHandler[(int)Define.UIEvent.PointerDown].Invoke(eventData);
+        if (OnPointerHandler[(int)UIEvent.PointerDown] != null)
+            OnPointerHandler[(int)UIEvent.PointerDown].Invoke(eventData);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)Define.UIEvent.PointerUp] != null)
-            OnPointerHandler[(int)Define.UIEvent.PointerUp].Invoke(eventData);
+        if (OnPointerHandler[(int)UIEvent.PointerUp] != null)
+            OnPointerHandler[(int)UIEvent.PointerUp].Invoke(eventData);
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)Define.UIEvent.BeginDrag] != null)
-            OnPointerHandler[(int)Define.UIEvent.BeginDrag].Invoke(eventData);
+        if (OnPointerHandler[(int)UIEvent.BeginDrag] != null)
+            OnPointerHandler[(int)UIEvent.BeginDrag].Invoke(eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)Define.UIEvent.Drag] != null)
-            OnPointerHandler[(int)Define.UIEvent.Drag].Invoke(eventData);
+        if (OnPointerHandler[(int)UIEvent.Drag] != null)
+            OnPointerHandler[(int)UIEvent.Drag].Invoke(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)Define.UIEvent.EndDrag] != null)
-            OnPointerHandler[(int)Define.UIEvent.EndDrag].Invoke(eventData);
+        if (OnPointerHandler[(int)UIEvent.EndDrag] != null)
+            OnPointerHandler[(int)UIEvent.EndDrag].Invoke(eventData);
     }
 
 }
