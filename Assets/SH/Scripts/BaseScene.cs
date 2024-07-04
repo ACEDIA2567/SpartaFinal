@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 public abstract class BaseScene : MonoBehaviour
 {
-    public Define.SceneType SceneType { get; protected set; } = Define.SceneType.MaintenanceScene;
+    public SceneType SceneType { get; protected set; } = SceneType.MaintenanceScene;
 
     private void Awake()
     {

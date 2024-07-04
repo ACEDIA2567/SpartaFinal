@@ -5,6 +5,7 @@ using System.Resources;
 using TMPro.EditorUtilities;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Managers : MonoBehaviour
 {
@@ -20,8 +21,8 @@ public class Managers : MonoBehaviour
 
     public static GameObject SoundRoot { get; private set; }
 
-    public static DataManager Data { get { return instance?.data; } }
-    public static GamePlayManager Game { get { return instance?.game; } set { instance.game = value; } }
+    public static DataManager Data { get { return Instance?.data; } }
+    public static GamePlayManager Game { get { return Instance?.game; } set { Instance.game = value; } }
     public static PoolManager Pool { get { return Instance?.pool; } }
     public static ResourceManager Resource { get { return Instance?.resource; } }
     public static SoundManager Sound { get { return Instance?.sound; } }

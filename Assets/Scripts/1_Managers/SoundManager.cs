@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager
 {
-    AudioSource[] audioSources = new AudioSource[(int)Define.Sounds.Count];
+    AudioSource[] audioSources = new AudioSource[(int)Sounds.Count];
     public Dictionary<string,AudioClip> audioClips = new Dictionary<string, AudioClip> ();
 
     GameObject root = null;
@@ -19,8 +19,8 @@ public class SoundManager
                 root = new GameObject { name = "@SoundRoot" };
                 UnityEngine.Object.DontDestroyOnLoad(root);
 
-                string[] soundTypeName = Enum.GetNames(typeof(Define.Sounds));
-                for (int i = 0; i < (int)Define.Sounds.Count; i++)
+                string[] soundTypeName = Enum.GetNames(typeof(Sounds));
+                for (int i = 0; i < (int)Sounds.Count; i++)
                 {
                     GameObject go = new GameObject { name = soundTypeName[i] };
                     if (go == null)
@@ -29,14 +29,14 @@ public class SoundManager
                     go.transform.parent = root.transform;
                 }
                 LoadClips();
-//                audioSources[(int)Define.Sound.BGM].loop = true;
+//                audioSources[(int)Sound.BGM].loop = true;
             }
         }
     }
 
     private void LoadClips()
     {
-        string[] clipNames = Enum.GetNames (typeof(Define.Clips));
+        string[] clipNames = Enum.GetNames (typeof(Clips));
         for(int i=0; i<clipNames.Length; i++)
         {
             AudioClip clip = Managers.Resource.Load<AudioClip>($"Audio/Clips/{clipNames[i]}");
@@ -45,7 +45,7 @@ public class SoundManager
             source.clip = clip;
         }
     }
-    public bool Play(Define.Sounds type, bool oneshot = false)
+    public bool Play(Sounds type, bool oneshot = false)
     {
         if(audioSources[(int)type])
         {
@@ -57,7 +57,7 @@ public class SoundManager
         }
         return false;
     }
-    public void Stop(Define.Sounds type)
+    public void Stop(Sounds type)
     {
         if (audioSources[(int)type])
         {
