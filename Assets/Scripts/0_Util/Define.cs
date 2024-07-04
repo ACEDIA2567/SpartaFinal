@@ -1,5 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.ComponentModel;
+using System.Reflection;
 using UnityEngine;
 
 #region Associated with Input
@@ -51,6 +52,7 @@ public enum SceneType
 {
     StartScene,
     MainScene,
+    MaintenanceScene,
     Count,
 }
 
@@ -117,26 +119,34 @@ public enum LayerMasks
 {
     Count,
 }
+
 public enum BuffType
 {
     SPEED_UP,
 }
 
-public enum AttackType
+public enum FilePath
 {
-    Normal,
-    Explosive,
-    Concussive,
-    Spell,
-    Count
+    [Description("")]
+    UI = 0,
 }
 
-public enum ArmorType
+public static class EnumUtil
 {
-    Small,
-    Medium,
-    Large,
-    Shield,
-    Count
+    public static string ToDescription(this Enum source)
+    {
+        FieldInfo fi = source.GetType().GetField(source.ToString());
+        var att = (DescriptionAttribute)fi.GetCustomAttribute(typeof(DescriptionAttribute));
+
+        if (att != null)
+        {
+            return att.Description;
+        }
+        else
+        {
+            return source.ToString();
+        }
+    }
 }
+
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager
 {
-    AudioSource[] audioSources = new AudioSource[(int)Sounds.Count];
+    AudioSource[] audioSources = new AudioSource[(int)Define.Sounds.Count];
     public Dictionary<string,AudioClip> audioClips = new Dictionary<string, AudioClip> ();
 
     GameObject root = null;
@@ -19,8 +19,8 @@ public class SoundManager
                 root = new GameObject { name = "@SoundRoot" };
                 UnityEngine.Object.DontDestroyOnLoad(root);
 
-                string[] soundTypeName = Enum.GetNames(typeof(Sounds));
-                for (int i = 0; i < (int)Sounds.Count; i++)
+                string[] soundTypeName = Enum.GetNames(typeof(Define.Sounds));
+                for (int i = 0; i < (int)Define.Sounds.Count; i++)
                 {
                     GameObject go = new GameObject { name = soundTypeName[i] };
                     if (go == null)
@@ -36,7 +36,7 @@ public class SoundManager
 
     private void LoadClips()
     {
-        string[] clipNames = Enum.GetNames (typeof(Clips));
+        string[] clipNames = Enum.GetNames (typeof(Define.Clips));
         for(int i=0; i<clipNames.Length; i++)
         {
             AudioClip clip = Managers.Resource.Load<AudioClip>($"Audio/Clips/{clipNames[i]}");
@@ -45,7 +45,7 @@ public class SoundManager
             source.clip = clip;
         }
     }
-    public bool Play(Sounds type, bool oneshot = false)
+    public bool Play(Define.Sounds type, bool oneshot = false)
     {
         if(audioSources[(int)type])
         {
@@ -57,7 +57,7 @@ public class SoundManager
         }
         return false;
     }
-    public void Stop(Sounds type)
+    public void Stop(Define.Sounds type)
     {
         if (audioSources[(int)type])
         {
