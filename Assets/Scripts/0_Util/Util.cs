@@ -10,15 +10,14 @@ public class Util
         return comp;
     }
 
-    public static GameObject FindChild(GameObject go, string name = null)
-    {
-        Transform tf = FindChild<Transform>(go, name);
-        if (tf == null)
-            return null;
-
-        return tf.gameObject;
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="go"></param>
+    /// <param name="name">오브젝트의 이름 확인 + 이름 안 적으면 그냥 오브젝트임만 확인</param>
+    /// <param name="recursive">재귀적으로 찾을 것인가 : 자식의 자식까지 확인할 것인가</param>
+    /// <returns></returns>
     public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : Object
     {
         if(go==null) return null;
@@ -46,5 +45,22 @@ public class Util
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// T FindChild<T>와 같이 오브젝트를 찾지만 컴포넌트 없이 게임오브젝트만 찾는 함수
+    /// </summary>
+    /// <param name="go"></param>
+    /// <param name="name"></param>
+    /// <param name="recursive"></param>
+    /// <returns></returns>
+    public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
+    {
+        Transform tf = FindChild<Transform>(go, name, recursive);
+
+        if (tf == null)
+            return null;
+
+        return tf.gameObject;
     }
 }

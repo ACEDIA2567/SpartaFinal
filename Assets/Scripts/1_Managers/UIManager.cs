@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager
 {
@@ -9,7 +10,6 @@ public class UIManager
 
     public List<UIBase> UIlist = new List<UIBase>();
     Stack<UI_PopUp> _popupStack = new Stack<UI_PopUp>();
-
     UI_Scene _sceneUI = null;
 
     public GameObject Root
@@ -23,19 +23,42 @@ public class UIManager
         }
     }
 
-    public T ShowUI<T>(string name = null, string path = null) where T : UIBase
+    /// <summary>
+    /// order 변경을 위해 canvas에게 요청
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <param name="sort"></param>
+    public void SetCanvas(GameObject gameObject, bool sort = true)
+    {
+        Canvas canvas = Util.GetOrAddComponent<Canvas>(gameObject);
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.overrideSorting = true; //중첩 캔버스 내에게 본인 order에만 적용
+
+        Util.GetOrAddComponent<CanvasScaler>(gameObject);
+        Util.GetOrAddComponent<GraphicRaycaster>(gameObject);
+
+        if (sort)
+        {
+            canvas.sortingOrder = _order;
+            _order++;
+        }
+        else
+        {
+            canvas.sortingOrder = -20;
+        }
+    }
+
+    public T MakeItems<T>(Transform parent = null, string name = null) where T : UIBase
     {
         if (string.IsNullOrEmpty(name))
-            name = nameof(T);
+            name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"UI/{name}");
+        GameObject go = Managers.Resource.Instantiate($"UI/Item/{name}");
 
-        T ui = Util.GetOrAddComponent<T>(go);
-        UIlist.Add(ui);
-
-        go.transform.SetParent(Root.transform);
-
-        return ui;
+        if (parent != null)
+            go.transform.SetParent(parent);
+        
+        return go.GetOrAddComponent<T>(); 
     }
 
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
@@ -86,66 +109,6 @@ public class UIManager
         return popup;
     }
 
-    public T ToggleUI<T>() where T : UIBase
-    {
-        T ui = FindUI<T>();
-        if (ui != null)
-        {
-            FindUI<T>().gameObject.SetActive(!FindUI<T>().gameObject.activeSelf);
-            return ui;
-        }
-        else
-            return null;
-    }
-
-    public T FindUI<T>() where T : UIBase
-    {
-        return UIlist.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
-    }
-
-    public T FindPopUp<T>() where T : UI_PopUp
-    {
-        return _popupStack.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
-    }
-
-    public void SetCanvas(GameObject gameObject, bool sort = true)
-    {
-        Canvas canvas = Util.GetOrAddComponent<Canvas>(gameObject);
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.overrideSorting = true;
-
-        if (sort)
-        {
-            canvas.sortingOrder = _order;
-            _order++;
-        }
-        else
-        {
-            canvas.sortingOrder = -20;
-        }
-    }
-
-    public T PeekPopupUI<T>() where T : UI_PopUp
-    {
-        if (_popupStack.Count == 0)
-            return null;
-
-        return _popupStack.Peek() as T;
-    }
-
-    public void ClosePopupUI(UI_PopUp uI_PopUp)
-    {
-        if (_popupStack.Count == 0)
-            return;
-
-        if (_popupStack.Peek() != uI_PopUp)
-        {
-            Debug.Log("Close Popup Failed!");
-            return;
-        }
-        ClosePopupUI();
-    }
-
     public void ClosePopupUI()
     {
         if (_popupStack.Count == 0)
@@ -157,11 +120,62 @@ public class UIManager
         _order--;
     }
 
+    public void ClosePopupUI(UI_PopUp uI_PopUp)
+    {
+        if (_popupStack.Count == 0)
+            return;
+
+        if (_popupStack.Peek() != uI_PopUp) // Peek : 마지막꺼 확인
+        {
+            Debug.Log("Close Popup Failed!");
+            return;
+        }
+
+        ClosePopupUI();
+    }
+
     public void CloseAllPopupUI()
     {
         while (_popupStack.Count > 0)
         {
             ClosePopupUI();
         }
+    }
+
+    //public T ToggleUI<T>() where T : UIBase
+    //{
+    //    T ui = FindUI<T>();
+    //    if (ui != null)
+    //    {
+    //        FindUI<T>().gameObject.SetActive(!FindUI<T>().gameObject.activeSelf);
+    //        return ui;
+    //    }
+    //    else
+    //        return null;
+    //}
+
+    public T FindUI<T>() where T : UIBase
+    {
+        return UIlist.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
+    }
+
+    public T FindPopUp<T>() where T : UI_PopUp
+    {
+        return _popupStack.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
+    }
+
+
+    //public T PeekPopupUI<T>() where T : UI_PopUp
+    //{
+    //    if (_popupStack.Count == 0)
+    //        return null;
+
+    //    return _popupStack.Peek() as T;
+    //}
+
+    public void Clear()
+    {
+        CloseAllPopupUI();
+        _sceneUI = null;
     }
 }
