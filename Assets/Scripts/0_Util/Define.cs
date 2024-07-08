@@ -11,6 +11,13 @@ public enum InputDevices
     Gamepad,
     Count,
 }
+
+public enum JoystickMode
+{
+    Fixed,
+    Floating,
+    Count,
+}
 public enum InputStatus
 {
     Started,
@@ -22,10 +29,13 @@ public enum ActionType
 {
     Idle,
     Move,
+    JoystickDown,
+    JoystickMove,
     Attack,
     Evade,
     Skill,
     SkillB,
+    Interact,
     Count,
 }
 

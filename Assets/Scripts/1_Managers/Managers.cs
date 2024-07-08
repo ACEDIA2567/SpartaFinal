@@ -28,12 +28,6 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance?.sound; } }
     public static UIManager UI { get { return Instance?.ui; } }
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        Init();
-    }
-
     static void Init()
     {
         if(instance == null)

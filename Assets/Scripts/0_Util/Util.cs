@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class Util
 {
+    public static Camera GetCameraFromCanvas(Canvas canvas)
+    {
+        RenderMode mode = canvas.renderMode;
+        if (mode == RenderMode.ScreenSpaceOverlay ||
+            (mode == RenderMode.ScreenSpaceCamera &&
+             canvas.worldCamera == null))
+            return null;
+
+        return canvas.worldCamera ?? Camera.main;
+    }
     public static T GetOrAddComponent<T>(GameObject go) where T : Component
     {
         T comp = go.GetComponent<T>();

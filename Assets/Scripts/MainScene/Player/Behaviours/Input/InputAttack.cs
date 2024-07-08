@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class InputAttack : InputBase
 {
-    private void Start()
+    public InputAttack()
     {
         Init();
-        PlayerInputHandler inputHandler = Managers.Game.player.InputHandler;
         inputHandler.data[(int)ActionType.Attack].Action = action;
-        inputHandler.data[(int)ActionType.Attack].Subscribers[InputStatus.Started] += Attack;
         inputHandler.SubscribeToggle();
     }
 
@@ -22,7 +20,6 @@ public class InputAttack : InputBase
 
         action = new InputAction(nameof(ActionType.Attack), InputActionType.Button);
         action.expectedControlType = nameof(Button);
-        
 
         bindings = new InputBinding[bindingConfig.Count];
         SetBindings();
@@ -48,9 +45,5 @@ public class InputAttack : InputBase
             }
             action.AddBinding(bindings[i]);
         }
-    }
-    private void Attack(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Attack");
     }
 }

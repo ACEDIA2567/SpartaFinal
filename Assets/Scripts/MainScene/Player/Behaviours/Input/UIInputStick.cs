@@ -22,7 +22,7 @@ public class UIInputStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IP
 
     RectTransform bg;
     RectTransform handle;
-    Canvas canv;
+    public Canvas canv;
     Camera cam;
 
     void Start()

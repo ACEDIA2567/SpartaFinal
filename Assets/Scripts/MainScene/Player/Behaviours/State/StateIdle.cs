@@ -9,6 +9,7 @@ public class StateIdle : StateBase
     public override void Enter()
     {
         Debug.Log("State Idle Enter");
+        // animation will be preferred to set in this part
     }
 
     public override void Exit()

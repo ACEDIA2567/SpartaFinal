@@ -1,37 +1,53 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class BehaviourMove : BehaviourBase
+public class BehaviourMove : BehaviourInput
 {
-    Rigidbody2D rb2D;
-    StateMachine stateMachine;
-    public UnityAction moveEvent;
-    public UnityAction stopEvent;
+    [SerializeField] protected float speed;
+    protected Rigidbody2D rb2D;
+    protected PlayerInputHandler handler;
     void Start()
     {
         Init();
     }
     protected override void Init()
     {
+        speed = 5f;
         input = new InputMove();
         stateMachine = Managers.Game.player.StateHandler.stateMachine;
         state = Managers.Game.player.StateHandler.MoveState;
-
+        action = new UnityAction[(int)InputStatus.Count];
         rb2D = GetComponent<Rigidbody2D>();
-        Managers.Game.player.InputHandler.data[(int)ActionType.Move].Subscribers[InputStatus.Performed] += Move;
-        Managers.Game.player.InputHandler.data[(int)ActionType.Move].Subscribers[InputStatus.Canceled]  += Stop;
-    }
 
-    void Move(InputAction.CallbackContext obj)
+        handler = Managers.Game.player.InputHandler;
+        handler.data[(int)ActionType.Move].Subscribers[InputStatus.Started]   += Started;
+        handler.data[(int)ActionType.Move].Subscribers[InputStatus.Performed] += Performed;
+        handler.data[(int)ActionType.Move].Subscribers[InputStatus.Canceled]  += Canceled;
+        handler.SubscribeToggle();
+    }
+    protected override void Started(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(state);
-        moveEvent?.Invoke();
+        action[(int)InputStatus.Started]?.Invoke();
     }
-    void Stop(InputAction.CallbackContext obj)
+
+
+    protected override void Performed(InputAction.CallbackContext context)
     {
+        // Movement
+        rb2D.velocity = speed * context.ReadValue<Vector2>().normalized;
+            
+        action[(int)InputStatus.Performed]?.Invoke();
+    }
+    protected override void Canceled(InputAction.CallbackContext context)
+    {
+        // Stop
+        rb2D.velocity = Vector2.zero;
+        
         stateMachine.ChangeState(Managers.Game.player.StateHandler.IdleState);
-        stopEvent?.Invoke();
+        action[(int)InputStatus.Canceled]?.Invoke();
     }
 }

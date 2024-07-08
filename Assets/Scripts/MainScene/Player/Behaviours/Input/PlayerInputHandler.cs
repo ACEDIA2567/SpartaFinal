@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 
-public class PlayerInputHandler
+public class PlayerInputHandler : MonoBehaviour
 {
     public InputData[] data;
 
-    public PlayerInputHandler()
+    void Start()
     {
         Managers.Game.player.InputHandler = this;
         Init();
