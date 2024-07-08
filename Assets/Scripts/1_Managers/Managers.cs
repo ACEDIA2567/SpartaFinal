@@ -18,6 +18,7 @@ public class Managers : MonoBehaviour
     ResourceManager resource = new ResourceManager();
     SoundManager sound = new SoundManager();
     UIManager ui = new UIManager();
+    LoadSceneManager scene = new LoadSceneManager();
 
     public static GameObject SoundRoot { get; private set; }
 
@@ -27,6 +28,7 @@ public class Managers : MonoBehaviour
     public static ResourceManager Resource { get { return Instance?.resource; } }
     public static SoundManager Sound { get { return Instance?.sound; } }
     public static UIManager UI { get { return Instance?.ui; } }
+    public static LoadSceneManager Scene { get { return Instance?.scene; } }
 
     static void Init()
     {
@@ -47,5 +49,11 @@ public class Managers : MonoBehaviour
             instance.sound.Init();
             SoundRoot = GameObject.Find("@SoundRoot");
         }
+    }
+    public static void Clear()
+    {
+        Scene.Clear();
+        UI.Clear();
+        Pool.Clear();
     }
 }

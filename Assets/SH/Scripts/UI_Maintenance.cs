@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -19,7 +20,8 @@ public class UI_Maintenance : UI_Scene
     {
         CharacterForce = 0,
         EquipmentForce,
-        Store
+        Store,
+        VillageAttack,
     }
 
     private void Start()
@@ -35,9 +37,15 @@ public class UI_Maintenance : UI_Scene
         Bind<Image>(typeof(Images));
         Bind<Button>(typeof(Buttons));
 
-        Get<Button>((int)Buttons.CharacterForce).gameObject.BindEvent(CharactoerForce);
-        Get<Button>((int)Buttons.EquipmentForce).gameObject.BindEvent(EquipmentForce);
-        Get<Button>((int)Buttons.Store).gameObject.BindEvent(Store);
+        GetButton((int)Buttons.CharacterForce).gameObject.BindEvent(CharactoerForce);
+        GetButton((int)Buttons.EquipmentForce).gameObject.BindEvent(EquipmentForce);
+        GetButton((int)Buttons.Store).gameObject.BindEvent(Store);
+        GetButton((int)Buttons.VillageAttack).gameObject.BindEvent(VillageAttack);
+    }
+
+    private void VillageAttack(PointerEventData data)
+    {
+        Managers.UI.ShowPopupUI<UI_VillageAttack>();
     }
 
     private void Store(PointerEventData data)
