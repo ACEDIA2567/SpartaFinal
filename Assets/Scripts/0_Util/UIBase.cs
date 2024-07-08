@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using Object = UnityEngine.Object;
+using UnityEngine.UI;
 
 public abstract class UIBase : MonoBehaviour
 {
-    protected Dictionary<Type, Object[]> _objects = new Dictionary<Type, Object[]>();
+    protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
 
     public abstract void Init();
 
@@ -19,19 +16,20 @@ public abstract class UIBase : MonoBehaviour
         Managers.UI.UIlist.Add(this);
     }
 
-    protected void Bind<T>(Type type) where T : Object
+    protected void Bind<T>(Type type) where T : UnityEngine.Object
     {
         string[] names = Enum.GetNames(type);
-        Object[] objects = new Object[names.Length];
+        UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
         _objects.Add(typeof(T), objects);
 
         for (int i = 0; i < names.Length; i++)
         {
             if (typeof(T) == typeof(GameObject))
-                objects[i] = Util.FindChild<T>(gameObject, names[i], true);
+                objects[i] = Util.FindChild(gameObject, names[i], true);
             else
                 objects[i] = Util.FindChild<T>(gameObject, names[i], true);
 
+            // If Fail To Find Obj
             if (objects[i] == null)
                 Debug.Log($"Failed to bind({names[i]})");
         }
@@ -50,53 +48,42 @@ public abstract class UIBase : MonoBehaviour
     {
         UIEventHandler evt = Util.GetOrAddComponent<UIEventHandler>(go);
 
-        evt.OnPointerHandler[(int)type] -= action;
-        evt.OnPointerHandler[(int)type] += action;
+        switch (type)
+        {
+            case UIEvent.Click:
+                evt.OnClickHandler -= action;
+                evt.OnClickHandler += action;
+                break;
+            case UIEvent.Drag:
+                evt.OnDragHandler -= action;
+                evt.OnDragHandler += action;
+                break;
+        }
     }
+
+    protected Text GetText(int idx) { return Get<Text>(idx); }
+    protected Button GetButton(int idx) { return Get<Button>(idx); }
+    protected Image GetImage(int idx) { return Get<Image>(idx); }
+    protected GameObject GetGameObject(int idx) { return Get<GameObject>(idx); }
 }
 
 public class UIEventHandler : MonoBehaviour,
     IPointerClickHandler,
-    IPointerDownHandler,
-    IPointerUpHandler,
-    IBeginDragHandler,
-    IDragHandler,
-    IEndDragHandler
+    IDragHandler
 {
-    public Action<PointerEventData>[] OnPointerHandler = new Action<PointerEventData>[6] { null, null, null, null, null, null };
+    public Action<PointerEventData> OnClickHandler = null;
+    public Action<PointerEventData> OnDragHandler = null;
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)UIEvent.Click] != null)
-            OnPointerHandler[(int)UIEvent.Click].Invoke(eventData);
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (OnPointerHandler[(int)UIEvent.PointerDown] != null)
-            OnPointerHandler[(int)UIEvent.PointerDown].Invoke(eventData);
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (OnPointerHandler[(int)UIEvent.PointerUp] != null)
-            OnPointerHandler[(int)UIEvent.PointerUp].Invoke(eventData);
-    }
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (OnPointerHandler[(int)UIEvent.BeginDrag] != null)
-            OnPointerHandler[(int)UIEvent.BeginDrag].Invoke(eventData);
+        if (OnClickHandler != null)
+            OnClickHandler.Invoke(eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (OnPointerHandler[(int)UIEvent.Drag] != null)
-            OnPointerHandler[(int)UIEvent.Drag].Invoke(eventData);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (OnPointerHandler[(int)UIEvent.EndDrag] != null)
-            OnPointerHandler[(int)UIEvent.EndDrag].Invoke(eventData);
+        if (OnDragHandler != null)
+            OnDragHandler.Invoke(eventData);
     }
 
 }

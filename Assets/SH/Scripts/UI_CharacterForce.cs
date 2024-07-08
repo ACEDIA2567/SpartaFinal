@@ -7,9 +7,14 @@ using UnityEngine.UI;
 
 public class UI_CharacterForce : UI_PopUp
 {
+    enum GameObjects
+    {
+        Slots = 0,
+    }
+
     enum Buttons
     {
-        ExitBtn = 0,
+        ExitBtn,
     }
 
     private void Start()
@@ -21,24 +26,33 @@ public class UI_CharacterForce : UI_PopUp
     {
         base.Init();
 
+        Bind<GameObject>(typeof(GameObjects));
         Bind<Button>(typeof(Buttons));
 
-        Get<Button>((int)Buttons.ExitBtn).gameObject.BindEvent(ExitBtn);
+        GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(ExitBtn); 
 
-        CreateStats();
+        MakeSlots();
     }
 
     private void ExitBtn(PointerEventData data)
     {
-        Debug.Log("눌림");
-        ClosePopupUI();
+        base.ClosePopupUI();
     }
 
-    private void CreateStats()
+    private void MakeSlots()
     {
-        for(int i = 0; i < 2; i++)
+        GameObject slots = Get<GameObject>((int)GameObjects.Slots);
+        
+        // 패널 초기화
+        foreach(Transform child in slots.transform)
+            Managers.Resource.Destroy(child.gameObject);
+
+        for(int i = 0; i < 3; i++)
         {
-            Debug.Log("스탯강화ui 생성");
+            GameObject stat = Managers.UI.MakeItems<UI_CharacterForce_Item>(parent:slots.transform).gameObject;
+
+            UI_CharacterForce_Item characterStatForce = stat.GetOrAddComponent<UI_CharacterForce_Item>();
+            characterStatForce.SetInfo("", "", "", "", 0);
         }
     }
 

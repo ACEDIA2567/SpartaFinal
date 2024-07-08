@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Maintenance : BaseScene
+public class Battle : BaseScene
 {
     protected override void Init()
     {
         base.Init();
 
-        SceneType = SceneType.MaintenanceScene;
+        SceneType = SceneType.Battle_SH;
 
-        Managers.UI.ShowSceneUI<UI_Maintenance>();
-        Managers.UI.ShowHUD<UI_HUD>();
         Managers.UI.ShowSceneUI<UI_Player>();
+        Managers.UI.ShowHUD<UI_HUD>();
     }
 
 
