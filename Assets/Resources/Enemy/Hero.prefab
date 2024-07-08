@@ -163,13 +163,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status:
-    name: 
-    monsterType: 0
-    health: 0
-    attack: 0
-    attackSpeed: 0
+    name: Hero
+    monsterType: 3
+    health: 300
+    attack: 10
+    attackSpeed: 3
     attackRange: 0
-    attacType: 0
-    moveSpeed: 0
-    soul: 0
-    exp: 0
+    attacType: 2
+    moveSpeed: 1
+    soul: 20
+    exp: 20

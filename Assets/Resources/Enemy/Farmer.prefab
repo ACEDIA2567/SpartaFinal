@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8142653333889915645}
   - component: {fileID: 6279343688079238125}
+  - component: {fileID: -8387854602962391339}
   - component: {fileID: 7735165632175723724}
   - component: {fileID: 1935551948182744064}
   - component: {fileID: 6450315040377451547}
@@ -88,6 +89,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &-8387854602962391339
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956388250778010741}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
 --- !u!58 &7735165632175723724
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -163,13 +199,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status:
-    name: 
+    name: Farmer
     monsterType: 0
-    health: 0
-    attack: 0
-    attackSpeed: 0
-    attackRange: 0
+    health: 10
+    attack: 2
+    attackSpeed: 2
+    attackRange: 1
     attacType: 0
-    moveSpeed: 0
-    soul: 0
-    exp: 0
+    moveSpeed: 1
+    soul: 2
+    exp: 2

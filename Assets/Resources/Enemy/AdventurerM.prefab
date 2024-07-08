@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2621687568152042893}
   - component: {fileID: 7065232007107572472}
+  - component: {fileID: 184025466642465250}
   - component: {fileID: 8348791222551517281}
   - component: {fileID: 1398026662746268529}
   - component: {fileID: 3361601418913651979}
@@ -88,6 +89,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &184025466642465250
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424929267859348879}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
 --- !u!50 &8348791222551517281
 Rigidbody2D:
   serializedVersion: 4
@@ -163,13 +199,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status:
-    name: 
-    monsterType: 0
-    health: 0
-    attack: 0
-    attackSpeed: 0
-    attackRange: 0
+    name: AdventurerM
+    monsterType: 2
+    health: 30
+    attack: 10
+    attackSpeed: 3
+    attackRange: 1
     attacType: 0
-    moveSpeed: 0
-    soul: 0
-    exp: 0
+    moveSpeed: 2
+    soul: 5
+    exp: 5
