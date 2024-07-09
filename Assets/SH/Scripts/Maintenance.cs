@@ -12,6 +12,7 @@ public class Maintenance : BaseScene
 
         Managers.UI.ShowSceneUI<UI_Maintenance>();
         Managers.UI.ShowHUD<UI_HUD>();
+        Managers.UI.ShowSceneUI<UI_Player>();
     }
 
 
