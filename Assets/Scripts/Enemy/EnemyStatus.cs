@@ -12,7 +12,7 @@ public class EnemyStatus
     public int attack;
     public float attackSpeed;
     public float attackRange;
-    public AttackType attacType;
+    public AttackType attackType;
     public float moveSpeed;
     public int soul;
     public int exp;
