@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewItem", menuName = "Item")]
+
+public enum ItemType { Weapon, Armor, Ring }
+public enum ItemRarity { Normal, Rare, Epic, Legendary }
+
+[CreateAssetMenu(fileName = "New Item", menuName = "Item")]
 public class Item : ScriptableObject
 {
     public string itemName;
     public Sprite itemImage;
-    public int soulCost;
     public string description;
+    public ItemType itemType;
     public ItemRarity rarity;
-}
-
-public enum ItemRarity
-{
-    Normal,
-    Rare,
-    Epic,
-    Legendary
+    public int soulCost;
 }

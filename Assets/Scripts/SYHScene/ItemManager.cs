@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    [SerializeField] private List<Item> items; // 36개의 아이템 목록
+    [SerializeField] private List<Item> items;
 
     public List<Item> GetRandomItems(int count)
     {
@@ -15,6 +15,8 @@ public class ItemManager : MonoBehaviour
         }
         return selectedItems;
     }
+
+
 
     private Item GetRandomItem()
     {
