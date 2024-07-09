@@ -20,23 +20,23 @@ public class PlayerInventory : MonoBehaviour
 
     public void ReplaceItem(Item item)
     {
-        items[(int)item.type] = item;
+        items[(int)item.itemType] = item;
     }
 
-    public void EnchantItem(ItemType type)
-    {
-        float p = 1f;
-        if(items[(int)type].enchantmentLvl != 0)
-            p = 1f / items[(int)type].enchantmentLvl;
-        float rnd = Random.Range(0f, 1f);
-        if (rnd < p)
-        {
-            items[(int)type].enchantmentLvl++;
-        }
-        else if (rnd < (1-p)*0.5)
-        {
-            items[(int)type].enchantValue--;
-        }
-        items[(int)type].enchantValue = 1 / p;
-    }
+    //public void EnchantItem(ItemType type)
+    //{
+    //    float p = 1f;
+    //    if(items[(int)type].enchantmentLvl != 0)
+    //        p = 1f / items[(int)type].enchantmentLvl;
+    //    float rnd = Random.Range(0f, 1f);
+    //    if (rnd < p)
+    //    {
+    //        items[(int)type].enchantmentLvl++;
+    //    }
+    //    else if (rnd < (1-p)*0.5)
+    //    {
+    //        items[(int)type].enchantValue--;
+    //    }
+    //    items[(int)type].enchantValue = 1 / p;
+    //}
 }

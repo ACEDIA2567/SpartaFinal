@@ -811,7 +811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98bad44b654847ed9af1ec5ebf05bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedItem: {fileID: 0}
 --- !u!114 &375603778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1633,6 +1632,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPanel: {fileID: 516973117}
+  weaponImage: {fileID: 0}
+  armorImage: {fileID: 0}
+  ringImage: {fileID: 0}
+  weaponDescription: {fileID: 0}
+  armorDescription: {fileID: 0}
+  ringDescription: {fileID: 0}
 --- !u!4 &709148053
 Transform:
   m_ObjectHideFlags: 0
@@ -5196,34 +5201,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e0fc4e144f5b040ccb1b16eb33a7172f, type: 2}
   - {fileID: 11400000, guid: 68f3d2acdfea24546bd2e4adab271d87, type: 2}
   - {fileID: 11400000, guid: 557608e814f024750be4421a47481cbb, type: 2}
-  - {fileID: 11400000, guid: 82329710bef9d4612b4c76254734aebf, type: 2}
-  - {fileID: 11400000, guid: c122c7df4f00844fa97df4ff3cce6793, type: 2}
-  - {fileID: 11400000, guid: 449ae288cc9ab4684b1d5075a6481952, type: 2}
-  - {fileID: 11400000, guid: d7a46dc8b4be34c6cab7489c0ab38c3e, type: 2}
-  - {fileID: 11400000, guid: 58eed874b93744ed18519d5483698643, type: 2}
-  - {fileID: 11400000, guid: 645c06b24cd7540a89f6923f11187019, type: 2}
-  - {fileID: 11400000, guid: fbea3774de655417281a60725e89d0e9, type: 2}
-  - {fileID: 11400000, guid: ea63fe878445f47cea38cd302e6dbb63, type: 2}
-  - {fileID: 11400000, guid: 690d69e81f07b4d0184165ccf47f4380, type: 2}
-  - {fileID: 11400000, guid: d5a20554623dc41ddb53f514901ff79e, type: 2}
-  - {fileID: 11400000, guid: 3762f9e75ca20414fab34026a086494a, type: 2}
-  - {fileID: 11400000, guid: 4b2d693ff324d43e18b69a5cce54ab1e, type: 2}
-  - {fileID: 11400000, guid: 8b3a343eb30624b4b83b7e863b29c9a8, type: 2}
-  - {fileID: 11400000, guid: 28ecc615b1d14473dad58f0c6b229478, type: 2}
-  - {fileID: 11400000, guid: 65d34fd2ddf97456480c2de2325f75ac, type: 2}
-  - {fileID: 11400000, guid: db166b57b4c814fe6b55ff5c01dd7da2, type: 2}
-  - {fileID: 11400000, guid: 5bb35207133f1408b8924b0bf8eb413b, type: 2}
-  - {fileID: 11400000, guid: 4829d0bec985a431589ec9d0ccb31413, type: 2}
-  - {fileID: 11400000, guid: c29e3f6bafe6d4c7e85295d26a9e3e88, type: 2}
-  - {fileID: 11400000, guid: ed800552418144fb292484fee30a03e7, type: 2}
-  - {fileID: 11400000, guid: f0ea472fd465b440ca48933c904fda0c, type: 2}
-  - {fileID: 11400000, guid: efce2c34d256249098254f5572b43a75, type: 2}
-  - {fileID: 11400000, guid: 628fb2179c0f7415d9e98504f68fbfd2, type: 2}
-  - {fileID: 11400000, guid: aaedf8d63aa6e404c9d630f49fe070d7, type: 2}
-  - {fileID: 11400000, guid: 3b0f6c926a361468385bb0bd0ecdceed, type: 2}
-  - {fileID: 11400000, guid: 15ced72b5999f4897b41be18fbdf804b, type: 2}
-  - {fileID: 11400000, guid: b670d24c28d4d4d63b108d8cb94cf1d5, type: 2}
-  - {fileID: 11400000, guid: b24dd70ffc5e645d8aa6533caa15438c, type: 2}
 --- !u!4 &1424521164
 Transform:
   m_ObjectHideFlags: 0

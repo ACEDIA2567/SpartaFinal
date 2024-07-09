@@ -205,7 +205,7 @@ MonoBehaviour:
     attack: 10
     attackSpeed: 1
     attackRange: 8
-    attacType: 1
+    attackType: 1
     moveSpeed: 1
     soul: 4
     exp: 4

@@ -20,15 +20,26 @@ public class ItemManager : MonoBehaviour
 
     private Item GetRandomItem()
     {
-        float rand = Random.Range(0f, 1f);
-        ItemRarity selectedRarity;
-
-        if (rand <= 0.02f) selectedRarity = ItemRarity.Legendary;
-        else if (rand <= 0.12f) selectedRarity = ItemRarity.Epic;
-        else if (rand <= 0.27f) selectedRarity = ItemRarity.Rare;
-        else selectedRarity = ItemRarity.Normal;
-
+        ItemRarity selectedRarity = GetRandomRarity();
         List<Item> filteredItems = items.FindAll(item => item.rarity == selectedRarity);
+
+        // ???? ???? ???? ?? ??, ?? ??
+        while (filteredItems.Count == 0)
+        {
+            selectedRarity = GetRandomRarity();
+            filteredItems = items.FindAll(item => item.rarity == selectedRarity);
+        }
+
         return filteredItems[Random.Range(0, filteredItems.Count)];
+    }
+
+    private ItemRarity GetRandomRarity()
+    {
+        float rand = Random.Range(0f, 1f);
+
+        if (rand <= 0.02f) return ItemRarity.Legendary;
+        else if (rand <= 0.12f) return ItemRarity.Epic;
+        else if (rand <= 0.27f) return ItemRarity.Rare;
+        else return ItemRarity.Normal;
     }
 }

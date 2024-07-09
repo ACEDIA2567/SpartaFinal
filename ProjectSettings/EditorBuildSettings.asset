@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SH/MaintenanceScene.unity
+    path: Assets/SH/MaintenanceScene_SH.unity
     guid: 1c88ffceaca40a3429f43b49a99b1871
   - enabled: 1
     path: Assets/SH/Battle_SH.unity

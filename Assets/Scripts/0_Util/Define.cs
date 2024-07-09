@@ -61,7 +61,7 @@ public enum UIEvent
 public enum SceneType
 {
     StartScene,
-    MainScene,
+    BattleScene,
     MaintenanceScene,
     Count,
     Battle_SH, //Å×½ºÆ®
@@ -137,28 +137,5 @@ public enum BuffType
     SPEED_UP,
 }
 
-public enum FilePath
-{
-    [Description("")]
-    UI = 0,
-}
-
-public static class EnumUtil
-{
-    public static string ToDescription(this Enum source)
-    {
-        FieldInfo fi = source.GetType().GetField(source.ToString());
-        var att = (DescriptionAttribute)fi.GetCustomAttribute(typeof(DescriptionAttribute));
-
-        if (att != null)
-        {
-            return att.Description;
-        }
-        else
-        {
-            return source.ToString();
-        }
-    }
-}
 
 

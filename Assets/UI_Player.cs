@@ -38,8 +38,7 @@ public class UI_Player : UI_Scene
         GetButton((int)Buttons.SkillBtn_2).gameObject.BindEvent(SkillBtn_2);
 
         string sceneName = SceneManager.GetActiveScene().name;
-        Debug.Log(sceneName);
-        if (sceneName == "Battle_SH")
+        if (sceneName == "BattleScene")
         {
             GetButton((int)Buttons.InteractBtn).gameObject.SetActive(false);
         }

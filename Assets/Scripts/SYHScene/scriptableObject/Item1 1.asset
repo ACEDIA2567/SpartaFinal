@@ -16,7 +16,4 @@ MonoBehaviour:
   itemImage: {fileID: 1403008897, guid: db621c0838c0a7549b8dfce90a70f604, type: 3}
   soulCost: 1
   description: "\uB2E8\uAC80"
-  rarity: 0
-  type: 0
-  enchantmentLvl: 0
-  enchantValue: 0
+  rarity: 1

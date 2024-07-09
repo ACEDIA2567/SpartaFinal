@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e7bf4a73c0c4f009a5c4dcd33ab39f, type: 3}
   m_Name: Item1 29
   m_EditorClassIdentifier: 
-  itemName: "\uAC80"
+  itemName: "\uC774\uC18D \uBC18\uC9C0 \uB808\uC5B4"
   itemImage: {fileID: -453232475, guid: db621c0838c0a7549b8dfce90a70f604, type: 3}
   soulCost: 1
-  description: "\uAC80"
+  description: "\uC774\uC18D \uBC18\uC9C0"
   rarity: 0
-  type: 0
+  type: 2
   enchantmentLvl: 0
   enchantValue: 0
