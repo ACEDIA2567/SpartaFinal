@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_HUD : UI_Scene
 {
-    enum Images
+    enum Buttons
     {
-        MiniMap = 0,
-        OptionBtn
+        Option = 0,
     }
 
     // Start is called before the first frame update
@@ -22,6 +22,13 @@ public class UI_HUD : UI_Scene
     {
         base.Init();
 
-        Bind<Image>(typeof(Images));
+        Bind<Button>(typeof(Buttons));
+
+        GetButton((int)Buttons.Option).gameObject.BindEvent(Option);
+    }
+
+    private void Option(PointerEventData data)
+    {
+        Managers.UI.ShowPopupUI<UI_Options>();
     }
 }

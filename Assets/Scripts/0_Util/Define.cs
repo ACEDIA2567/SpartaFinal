@@ -64,7 +64,8 @@ public enum SceneType
     MainScene,
     MaintenanceScene,
     Count,
-    Battle_SH
+    Battle_SH, //테스트
+    Start_SH //테스트
 }
 
 #region Sound Assets

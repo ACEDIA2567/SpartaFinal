@@ -33,24 +33,25 @@ public class ItemUI : MonoBehaviour
 
         for (int i = 0; i < itemButtons.Length; i++)
         {
-            // 먼저 버튼 리스너를 초기화하여 중복 리스너 추가를 방지
             itemButtons[i].onClick.RemoveAllListeners();
+            itemImages[i].sprite = null;
+            itemSoulCosts[i].text = "";
+            itemDescriptions[i].text = "";
 
-            if (i < currentItems.Count)
+            ItemType itemType = (ItemType)i;  // 무기, 방어구, 반지에 해당하는 아이템만 표시
+            Item item = currentItems.Find(it => it.itemType == itemType);
+
+            if (item != null)
             {
-                itemImages[i].sprite = currentItems[i].itemImage;
-                itemSoulCosts[i].text = currentItems[i].soulCost.ToString();
-                itemDescriptions[i].text = currentItems[i].description;
-                Item item = currentItems[i]; // 현재 아이템을 로컬 변수로 저장
+                itemImages[i].sprite = item.itemImage;
+                itemSoulCosts[i].text = item.soulCost.ToString();
+                itemDescriptions[i].text = item.description;
                 itemButtons[i].onClick.AddListener(() => OnItemButtonClicked(item));
-                itemButtons[i].gameObject.SetActive(true); // 버튼 활성화
+                itemButtons[i].gameObject.SetActive(true);
             }
             else
             {
-                itemImages[i].sprite = null;
-                itemSoulCosts[i].text = "";
-                itemDescriptions[i].text = "";
-                itemButtons[i].gameObject.SetActive(false); // 버튼 비활성화
+                itemButtons[i].gameObject.SetActive(false);
             }
         }
     }
@@ -60,10 +61,12 @@ public class ItemUI : MonoBehaviour
         if (item != null)
         {
             playerStatus.EquipItem(item);
+            Debug.Log("아이템 구매: " + item.itemName + ", 비용: " + item.soulCost + " 영혼");
+
         }
         else
         {
-            Debug.LogWarning("장착된아이템이 null입니다.");
+            Debug.LogWarning("장착된아이템이 없습니다.");
         }
     }
 }
