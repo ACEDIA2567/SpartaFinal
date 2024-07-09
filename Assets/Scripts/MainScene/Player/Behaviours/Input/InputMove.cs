@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class InputMove : InputBase
 {
-
     public InputMove()
     {
         Init();

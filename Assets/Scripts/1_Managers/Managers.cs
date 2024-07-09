@@ -19,11 +19,17 @@ public class Managers : MonoBehaviour
     SoundManager sound = new SoundManager();
     UIManager ui = new UIManager();
     LoadSceneManager scene = new LoadSceneManager();
+    ItemManagerTest item ;//= new ItemManagerTest();
 
     public static GameObject SoundRoot { get; private set; }
 
     public static DataManager Data { get { return Instance?.data; } }
     public static GamePlayManager Game { get { return Instance?.game; } set { Instance.game = value; } }
+    public static ItemManagerTest Item
+    {
+        get { return Instance?.item; }
+        set { Instance.item = value; }
+    }
     public static PoolManager Pool { get { return Instance?.pool; } }
     public static ResourceManager Resource { get { return Instance?.resource; } }
     public static SoundManager Sound { get { return Instance?.sound; } }
