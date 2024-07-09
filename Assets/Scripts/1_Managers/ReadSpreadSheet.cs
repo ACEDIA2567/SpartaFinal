@@ -51,9 +51,11 @@ public class ReadSpreadSheet : MonoBehaviour
                     // 저장된 enemy 정보들 처리
 
                     // Resource의 오브젝트에 해당 정보 전달
-                    GameObject SpawnEnemy = Instantiate(Resources.Load<GameObject>($"Enemy/{enemyStatus.name}"));
+                    GameObject SpawnEnemy = Resources.Load<GameObject>($"Enemy/{enemyStatus.name}");
                     SpawnEnemy.name = enemyStatus.name;
                     SpawnEnemy.GetComponent<Enemy>().status = enemyStatus;
+                    Managers.Pool.CreatePool(SpawnEnemy, 10);
+                    Managers.Pool.Pop(SpawnEnemy, transform.parent);
                 }
             }
         }
