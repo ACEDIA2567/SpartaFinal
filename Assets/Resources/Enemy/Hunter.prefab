@@ -204,7 +204,7 @@ MonoBehaviour:
     health: 20
     attack: 5
     attackSpeed: 1
-    attackRange: 2
+    attackRange: 8
     attacType: 1
     moveSpeed: 2
     soul: 4
