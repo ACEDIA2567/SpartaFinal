@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e7bf4a73c0c4f009a5c4dcd33ab39f, type: 3}
   m_Name: Item1 15
   m_EditorClassIdentifier: 
-  itemName: "\uAC80"
+  itemName: "\uB2E8\uB2E8\uD55C\uC678\uD53C \uB808\uC804\uB354\uB9AC"
   itemImage: {fileID: -453232475, guid: db621c0838c0a7549b8dfce90a70f604, type: 3}
   soulCost: 1
-  description: "\uAC80"
-  rarity: 1
+  description: "\uB2E8\uB2E8\uD55C \uC678\uD53C"
+  rarity: 3
