@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class UI_Maintenance : UI_Scene
         EquipmentForce,
         Store,
         VillageAttack,
+        Test,
     }
 
     private void Start()
@@ -41,6 +43,7 @@ public class UI_Maintenance : UI_Scene
         GetButton((int)Buttons.EquipmentForce).gameObject.BindEvent(EquipmentForce);
         GetButton((int)Buttons.Store).gameObject.BindEvent(Store);
         GetButton((int)Buttons.VillageAttack).gameObject.BindEvent(VillageAttack);
+        GetButton((int)Buttons.Test).gameObject.BindEvent(UpdatePlayerStatUI);
     }
 
     private void VillageAttack(PointerEventData data)
@@ -61,5 +64,19 @@ public class UI_Maintenance : UI_Scene
     private void CharactoerForce(PointerEventData data)
     {
         Managers.UI.ShowPopupUI<UI_CharacterForce>();
+    }
+
+    public void UpdatePlayerStatUI(PointerEventData data)
+    {
+        PlayerStatHandler statHandler = Managers.Game.player.StatHandler;
+        int lv =     (statHandler.GetStat(StatSpecies.LV) as StatInt).value;
+        int curExp = (statHandler.GetStat(StatSpecies.Exp) as StatInt).value;
+        int maxExp = (statHandler.GetStat(StatSpecies.MaxExp) as StatInt).value;
+        int soulCount = Managers.Game.player.Inventory.soulCount;
+
+        Get<TextMeshProUGUI>((int)Texts.Soul).text = $"{soulCount} 소울";
+        Get<TextMeshProUGUI>((int)Texts.Level).text = $"{lv} LV";
+        GetImage((int)Images.LevelAmount).fillAmount = (float)curExp / maxExp;
+        Debug.Log((float)curExp/maxExp);
     }
 }

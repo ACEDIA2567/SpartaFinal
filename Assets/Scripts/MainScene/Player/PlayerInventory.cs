@@ -4,6 +4,7 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public int soulCount;
     [SerializeField]
     public Item[] items;
 
@@ -15,6 +16,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Init()
     {
+        soulCount = 0;
         // total count of equipments : 3
         items = new Item[Enum.GetNames(typeof(ItemType)).Length];
         // call data from Save file
@@ -22,7 +24,15 @@ public class PlayerInventory : MonoBehaviour
 
     public void ReplaceItem(Item item)
     {
-        items[(int)item.itemType] = item;
+        if (soulCount >= item.soulCost)
+        {
+            soulCount -= item.soulCost;
+            items[(int)item.itemType] = item;
+        }
+        else
+        {
+            Debug.Log($"You don't have enough soul counts to buy {item.itemName}");
+        }
     }
 
     public Item GetEquippedItem(ItemType type) => items[(int)type];
