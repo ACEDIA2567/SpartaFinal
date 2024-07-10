@@ -18,7 +18,7 @@ public class BehaviourMove : BehaviourInput
         speed = 5f;
         input = new InputMove();
         stateMachine = Managers.Game.player.StateHandler.stateMachine;
-        state = Managers.Game.player.StateHandler.MoveState;
+        state = Managers.Game.player.StateHandler.Move;
         action = new UnityAction[(int)InputStatus.Count];
         rb2D = GetComponent<Rigidbody2D>();
 
@@ -47,7 +47,7 @@ public class BehaviourMove : BehaviourInput
         // Stop
         rb2D.velocity = Vector2.zero;
         
-        stateMachine.ChangeState(Managers.Game.player.StateHandler.IdleState);
+        stateMachine.ChangeState(Managers.Game.player.StateHandler.Idle);
         action[(int)InputStatus.Canceled]?.Invoke();
     }
 }

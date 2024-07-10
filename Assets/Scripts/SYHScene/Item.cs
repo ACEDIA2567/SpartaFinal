@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum ItemType { Weapon, Armor, Ring }
 public enum ItemRarity { Normal, Rare, Epic, Legendary }
 

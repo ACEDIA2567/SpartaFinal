@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uACF5\uC18D \uBC18\uC9C0 \uB808\uC804\uB354\uB9AC"
   itemImage: {fileID: -453232475, guid: db621c0838c0a7549b8dfce90a70f604, type: 3}
-  soulCost: 1
   description: "\uACF5\uC18D \uBC18\uC9C0"
+  itemType: 2
   rarity: 0
-  type: 2
-  enchantmentLvl: 0
-  enchantValue: 0
+  soulCost: 1

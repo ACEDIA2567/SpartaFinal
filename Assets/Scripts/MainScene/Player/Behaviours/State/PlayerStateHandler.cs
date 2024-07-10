@@ -5,11 +5,11 @@ public class PlayerStateHandler
     public StateMachine stateMachine;
 
     StateBase[] states;
-    public StateIdle IdleState { get; }
-    public StateMove MoveState { get; }
-    public StateAttack AttackState { get; }
-    public StateEvade EvadeState { get; }
-    public StateSkill SkillState { get; }
+    public StateIdle Idle { get; }
+    public StateMove Move { get; }
+    public StateAttack Attack { get; }
+    public StateEvade Evade { get; }
+    public StateSkill Skill { get; }
 
     public PlayerStateHandler()
     {
@@ -18,11 +18,11 @@ public class PlayerStateHandler
 
         states = new StateBase[(int)ActionType.Count];
         states[(int)ActionType.Idle] = new StateIdle(stateMachine);
-        IdleState = new StateIdle(stateMachine);
-        MoveState = new StateMove(stateMachine);
-        AttackState = new StateAttack(stateMachine);
-        EvadeState = new StateEvade(stateMachine);
-        SkillState = new StateSkill(stateMachine);
+        Idle = new StateIdle(stateMachine);
+        Move = new StateMove(stateMachine);
+        Attack = new StateAttack(stateMachine);
+        Evade = new StateEvade(stateMachine);
+        Skill = new StateSkill(stateMachine);
 
     }
 

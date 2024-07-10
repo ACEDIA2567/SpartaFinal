@@ -6,7 +6,7 @@ public class PlayerContoller : MonoBehaviour
 {
     private UIController uiController;
     private PlayStatus playerStatus;
-
+    
     private void Start()
     {
         uiController = FindObjectOfType<UIController>();
@@ -18,9 +18,15 @@ public class PlayerContoller : MonoBehaviour
         if (collision.gameObject.CompareTag("UI"))
         {
             uiController.ShowUI(
-                playerStatus.GetEquippedItem(ItemType.Weapon),
-                playerStatus.GetEquippedItem(ItemType.Armor),
-                playerStatus.GetEquippedItem(ItemType.Ring)
+                // YH style
+//                playerStatus.GetEquippedItem(ItemType.Weapon),
+//                playerStatus.GetEquippedItem(ItemType.Armor),
+//                playerStatus.GetEquippedItem(ItemType.Ring)
+                
+                // YJ style
+                Managers.Game.player.Inventory.GetEquippedItem(ItemType.Weapon),
+                Managers.Game.player.Inventory.GetEquippedItem(ItemType.Armor),
+                Managers.Game.player.Inventory.GetEquippedItem(ItemType.Ring)
             );
         }
     }

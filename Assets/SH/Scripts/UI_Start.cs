@@ -16,10 +16,7 @@ public class UI_Start : UI_Scene
     }
     enum Buttons
     {
-        NewGame = 0,
-        GamePlay,
-        Options,
-        Exit,
+        GamePlay = 0,
     }
 
     // Start is called before the first frame update
@@ -35,20 +32,7 @@ public class UI_Start : UI_Scene
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
 
-        GetButton((int)Buttons.NewGame).gameObject.BindEvent(NewGame);
         GetButton((int)Buttons.GamePlay).gameObject.BindEvent(GamePlay);
-        GetButton((int)Buttons.Options).gameObject.BindEvent(Options);
-        GetButton((int)Buttons.Exit).gameObject.BindEvent(Exit);
-    }
-
-    private void Options(PointerEventData data)
-    {
-        Managers.UI.ShowPopupUI<UI_Options>();
-    }
-
-    private void Exit(PointerEventData data)
-    {
-        Managers.Scene.ExitGame();
     }
 
     private void GamePlay(PointerEventData data)
@@ -56,8 +40,4 @@ public class UI_Start : UI_Scene
         Managers.Scene.LoadScene(SceneType.MaintenanceScene);
     }
 
-    private void NewGame(PointerEventData data)
-    {
-        Managers.Scene.LoadScene(SceneType.MaintenanceScene);
-    }
 }
