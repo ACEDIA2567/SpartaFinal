@@ -43,6 +43,7 @@ public class PlayerInteractionYJ : MonoBehaviour
                 );
             SetButtonState(true);
         }
+        
         if(other.gameObject.name == "Alchemist_idle_0")
             SetButtonState(true);
     }

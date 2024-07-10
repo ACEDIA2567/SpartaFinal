@@ -46,6 +46,24 @@ public enum AxisOptions
     Vertical 
 }
 #endregion
+
+public enum StatSpecies
+{
+    LV,
+    Name,
+    HP,
+    plusHP,
+    ATKPower,
+    plusATKPower,
+    ATKRate,
+    plusATKRate,
+    Defence,
+    plusDefence,
+    Speed,
+    plusSpeed,
+    Exp,
+    MaxExp,
+}
 // This file contains all the enums
 public enum UIEvent
 {
@@ -64,9 +82,9 @@ public enum SceneType
     BattleScene,
     MaintenanceScene,
     Count,
-    Battle_SH, //�׽�Ʈ
+    Battle_SH, //테스트
     MaintenanceScene_SH,
-    Start_SH //�׽�Ʈ
+    Start_SH //테스트
 }
 
 #region Sound Assets
