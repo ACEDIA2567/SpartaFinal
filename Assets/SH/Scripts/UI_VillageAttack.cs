@@ -55,7 +55,7 @@ public class UI_VillageAttack : UI_PopUp
     private void Village(PointerEventData data)
     {
         // todo :: ·¹º§¸µ
-        Managers.Scene.LoadScene(SceneType.Battle_SH);
+        Managers.Scene.LoadScene(SceneType.BattleScene);
     }
 
     private void ExitBtn(PointerEventData data)

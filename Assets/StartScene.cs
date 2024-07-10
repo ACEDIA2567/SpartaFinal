@@ -8,7 +8,7 @@ public class StartScene : BaseScene
     {
         base.Init();
 
-        SceneType = SceneType.Start_SH;
+        SceneType = SceneType.StartScene;
 
         Managers.UI.ShowSceneUI<UI_Start>();
     }

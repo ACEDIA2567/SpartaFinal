@@ -32,7 +32,7 @@ public class UI_Options : UI_PopUp
 
     private void ExitGame(PointerEventData data)
     {
-        Managers.Scene.LoadScene(SceneType.Start_SH);
+        Managers.Scene.LoadScene(SceneType.StartScene);
     }
 
     private void Option(PointerEventData data)

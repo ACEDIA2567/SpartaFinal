@@ -37,7 +37,7 @@ public class UI_Start : UI_Scene
 
     private void GamePlay(PointerEventData data)
     {
-        Managers.Scene.LoadScene(SceneType.MaintenanceScene_SH);
+        Managers.Scene.LoadScene(SceneType.MaintenanceScene);
     }
 
 }

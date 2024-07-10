@@ -8,7 +8,7 @@ public class Battle : BaseScene
     {
         base.Init();
 
-        SceneType = SceneType.Battle_SH;
+        SceneType = SceneType.BattleScene;
 
         Managers.UI.ShowSceneUI<UI_Player>();
         Managers.UI.ShowHUD<UI_HUD>();
