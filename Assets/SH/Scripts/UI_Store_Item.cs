@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,7 +7,7 @@ public class UI_Store_Item : UI_PopUp
 {
     enum Texts
     {
-        ItemText = 0,
+        ItemName = 0,
         CostText
     }
 
@@ -24,8 +21,10 @@ public class UI_Store_Item : UI_PopUp
         ItemImg = 0,
     }
 
-    string itemText, forceBtn, costText;
-    Image itemImg;
+    string itemName, forceBtn, costText;
+    Sprite itemImg;
+
+    Item item;
 
     void Start()
     {
@@ -40,22 +39,33 @@ public class UI_Store_Item : UI_PopUp
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Image>(typeof(Images));
 
-        //todo :: 각 오브젝트에 값 넣기
-        //Get<GameObject>((int)GamdObjects.StatName).GetComponent<TextMeshProUGUI>().text = statName;
+        GetImage((int)Images.ItemImg).sprite = itemImg;
+        GetText((int)Texts.ItemName).text = itemName;
+        GetText((int)Texts.CostText).text = $"{costText}소울";
 
-        GetButton((int)Buttons.UI_Store_Item).gameObject.BindEvent(item);
+        GetButton((int)Buttons.UI_Store_Item).gameObject.BindEvent(BuyItem);
     }
 
-    private void item(PointerEventData data)
+    private void BuyItem(PointerEventData data)
     {
-        Debug.Log("아이템 구매");
+        if (item != null)
+        {
+            Managers.Game.player.Inventory?.ReplaceItem(item);
+            Debug.Log("아이템 구매: " + item.itemName + ", 비용: " + item.soulCost + " 영혼");
+
+        }
+        else
+        {
+            Debug.LogWarning("장착된아이템이 없습니다.");
+        }
     }
 
-    // todo :: 버튼 눌렀을 때 장비 강화
-
-    // todo :: 각 slot 정보 가져오기
-    public void SetInfo() //, Image _statIcon
+    public void SetInfo(Item _item)
     {
+        item = _item;
 
+        itemImg = item.itemImage;
+        itemName = item.itemName;
+        costText = item.soulCost.ToString();
     }
 }

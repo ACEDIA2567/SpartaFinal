@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    public static ItemManager Instance;
+
     [SerializeField] private List<Item> items;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(Instance);
+        }
+    }
 
     public List<Item> GetRandomItems(int count)
     {
@@ -15,7 +29,6 @@ public class ItemManager : MonoBehaviour
         }
         return selectedItems;
     }
-
 
 
     private Item GetRandomItem()

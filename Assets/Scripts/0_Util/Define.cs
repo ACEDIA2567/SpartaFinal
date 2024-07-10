@@ -65,6 +65,7 @@ public enum SceneType
     MaintenanceScene,
     Count,
     Battle_SH, //테스트
+    MaintenanceScene_SH,
     Start_SH //테스트
 }
 

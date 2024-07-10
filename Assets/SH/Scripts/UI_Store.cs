@@ -17,6 +17,9 @@ public class UI_Store : UI_PopUp
         RerollBtn = 0,
         ExitBtn
     }
+
+    private List<Item> currentItems;
+
     private void Start()
     {
         Init();
@@ -29,7 +32,7 @@ public class UI_Store : UI_PopUp
         Bind<Button>(typeof(Buttons));
         Bind<GameObject>(typeof(GameObjects));
 
-        MakeSlots();
+        RefreshItems();
 
         GetButton((int)Buttons.RerollBtn).gameObject.BindEvent(RerollBtn);
         GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(ExitBtn);
@@ -42,23 +45,32 @@ public class UI_Store : UI_PopUp
 
     private void RerollBtn(PointerEventData data)
     {
-        // todo :: Reroll
-        Debug.Log("Reroll");
+        RefreshItems();
     }
-    private void MakeSlots()
+
+    private void RefreshItems()
     {
+        currentItems = ItemManager.Instance.GetRandomItems(3);
+
+        MakeSlots(currentItems);
+    }
+
+    // ites slot 생성
+    private void MakeSlots(List<Item> currentItems)
+    {
+        Debug.Log("MakeSlots");
         GameObject slots = Get<GameObject>((int)GameObjects.StoreSlots);
 
         // 패널 초기화
         foreach (Transform child in slots.transform)
             Managers.Resource.Destroy(child.gameObject);
 
-        for (int i = 0; i < 3; i++)
+        foreach (Item item in currentItems)
         {
             GameObject stat = Managers.UI.MakeItems<UI_Store_Item>(parent: slots.transform).gameObject;
 
             UI_Store_Item storeItem = stat.GetOrAddComponent<UI_Store_Item>();
-            storeItem.SetInfo();
+            storeItem.SetInfo(item);
         }
     }
 }

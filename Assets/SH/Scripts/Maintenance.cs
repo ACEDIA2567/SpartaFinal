@@ -8,7 +8,7 @@ public class Maintenance : BaseScene
     {
         base.Init();
 
-        SceneType = SceneType.MaintenanceScene;
+        SceneType = SceneType.MaintenanceScene_SH;
 
         Managers.UI.ShowSceneUI<UI_Maintenance>();
         Managers.UI.ShowHUD<UI_HUD>();
