@@ -9,9 +9,5 @@ public class BossEnemy : Enemy
         base.Awake();
     }
 
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
 
 }

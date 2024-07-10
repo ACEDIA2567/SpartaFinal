@@ -9,9 +9,4 @@ public class MeleeEnemy : Enemy
         base.Awake();
     }
 
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
 }
