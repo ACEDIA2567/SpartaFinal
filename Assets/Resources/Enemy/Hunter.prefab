@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2922732794733875821}
   - component: {fileID: 7625080459476196337}
   - component: {fileID: 2237192931478458024}
+  - component: {fileID: 8663299102988234678}
+  - component: {fileID: 7070912527356158686}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -79,7 +81,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.47209063, b: 0.1273585, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -209,3 +211,45 @@ MonoBehaviour:
     moveSpeed: 2
     soul: 4
     exp: 4
+  projectile: {fileID: 6214563886678823381, guid: 29eef4b9ed673bd45b80d3b2d17be25f,
+    type: 3}
+  AttackType: 0
+--- !u!114 &8663299102988234678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635426954916640041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff102f636ba100438fc23ae0a17ba3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  chase: 0
+  attacking: 0
+  turn: 0
+  trackingTime: 0
+  direction: {x: 0, y: 0, z: 0}
+--- !u!95 &7070912527356158686
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635426954916640041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

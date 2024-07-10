@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6355310927421354937}
   - component: {fileID: 1847230883646345646}
   - component: {fileID: 5903530788588911110}
+  - component: {fileID: 5847656823112114239}
+  - component: {fileID: -5898903218455145020}
   m_Layer: 0
   m_Name: AdventurerR
   m_TagString: Untagged
@@ -79,7 +81,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.13679248, g: 1, b: 0.21999522, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -209,3 +211,45 @@ MonoBehaviour:
     moveSpeed: 1
     soul: 4
     exp: 4
+  projectile: {fileID: 866291792069609161, guid: b44d63c65e51e17408c0e35ef5040e43,
+    type: 3}
+  AttackType: 1
+--- !u!114 &5847656823112114239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3823288347310783377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff102f636ba100438fc23ae0a17ba3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  chase: 0
+  attacking: 0
+  turn: 0
+  trackingTime: 0
+  direction: {x: 0, y: 0, z: 0}
+--- !u!95 &-5898903218455145020
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3823288347310783377}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
