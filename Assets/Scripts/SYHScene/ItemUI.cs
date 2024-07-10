@@ -39,7 +39,8 @@ public class ItemUI : MonoBehaviour
             itemDescriptions[i].text = "";
 
             ItemType itemType = (ItemType)i;  // 무기, 방어구, 반지에 해당하는 아이템만 표시
-            Item item = currentItems.Find(it => it.itemType == itemType);
+//            Item item = currentItems.Find(it => it.itemType == itemType);
+            Item item = currentItems[i];
 
             if (item != null)
             {
@@ -60,7 +61,10 @@ public class ItemUI : MonoBehaviour
     {
         if (item != null)
         {
-            playerStatus.EquipItem(item);
+            // style of YH
+            playerStatus?.EquipItem(item);
+            // style of YJ
+            Managers.Game.player.Inventory?.ReplaceItem(item);
             Debug.Log("아이템 구매: " + item.itemName + ", 비용: " + item.soulCost + " 영혼");
 
         }

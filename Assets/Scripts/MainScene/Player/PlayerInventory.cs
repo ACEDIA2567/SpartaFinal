@@ -1,20 +1,22 @@
+using System;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField]
-    Item[] items;
+    public Item[] items;
 
     void Start()
     {
         Init();
+        Managers.Game.player.Inventory = this;
     }
 
     void Init()
     {
         // total count of equipments : 3
-        items = new Item[3] { null, null, null };
+        items = new Item[Enum.GetNames(typeof(ItemType)).Length];
         // call data from Save file
     }
 
@@ -23,6 +25,8 @@ public class PlayerInventory : MonoBehaviour
         items[(int)item.itemType] = item;
     }
 
+    public Item GetEquippedItem(ItemType type) => items[(int)type];
+    
     //public void EnchantItem(ItemType type)
     //{
     //    float p = 1f;
