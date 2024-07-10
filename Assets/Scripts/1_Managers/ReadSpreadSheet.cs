@@ -10,9 +10,9 @@ using UnityEngine.Networking;
 
 public class ReadSpreadSheet : MonoBehaviour
 {
-    public readonly string adress = "https://docs.google.com/spreadsheets/d/1XHLzWB_-tvx_nhrLlhWn76zmjmvC3jh6dYxUxJB2LtU";
+    public readonly string adress = "https://docs.google.com/spreadsheets/d/189qqcrkBljcPWWYn-_7m1JIb0vEo0q1GcQbklTAAahI";
     public readonly string range = "A2:J";
-    public readonly int sheetID = 1488976208;
+    public readonly int sheetID = 658248956;
 
     public List<EnemyStatus> enemys;
 
