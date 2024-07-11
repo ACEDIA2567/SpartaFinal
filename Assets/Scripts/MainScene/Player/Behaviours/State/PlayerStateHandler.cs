@@ -5,11 +5,6 @@ public class PlayerStateHandler
     public StateMachine stateMachine;
 
     StateBase[] states;
-    public StateIdle Idle { get; }
-    public StateMove Move { get; }
-    public StateAttack Attack { get; }
-    public StateEvade Evade { get; }
-    public StateSkill Skill { get; }
 
     public PlayerStateHandler()
     {
@@ -18,16 +13,23 @@ public class PlayerStateHandler
 
         states = new StateBase[(int)ActionType.Count];
         states[(int)ActionType.Idle] = new StateIdle(stateMachine);
-        Idle = new StateIdle(stateMachine);
-        Move = new StateMove(stateMachine);
-        Attack = new StateAttack(stateMachine);
-        Evade = new StateEvade(stateMachine);
-        Skill = new StateSkill(stateMachine);
-
+        states[(int)ActionType.Hit] = new StateHit(stateMachine);
+        states[(int)ActionType.Die] = new StateDie(stateMachine);
+        states[(int)ActionType.Move] = new StateMove(stateMachine);
+        states[(int)ActionType.Attack] = new StateAttack(stateMachine);
+        states[(int)ActionType.Evade] = new StateEvade(stateMachine);
+        states[(int)ActionType.Skill] = new StateSkill(stateMachine);
+        states[(int)ActionType.Interact] = new StateInteract(stateMachine);
     }
 
-    public T GetOrAddState<T>(ActionType type) where T : StateBase
+    public StateBase GetState(ActionType type)
     {
-        return states[(int)type] as T;
+        if (states[(int)type] is null)
+        {
+            Debug.Log($"There's no instance of {nameof(type)}in states");
+            return null;
+        }
+
+        return states[(int)type];
     }
 }

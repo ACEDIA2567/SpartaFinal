@@ -15,4 +15,14 @@ public class StateEvade : StateBase
     {
         Debug.Log("State Evade Exit");
     }
+
+    public override bool CanTransitState(IState state)
+    {
+        if (state is StateDie or StateAttack or StateSkill)
+        {
+            Debug.Log($"Cannot transit {GetType()} from {state.GetType()}");
+            return false;
+        }
+        return true;
+    }
 }

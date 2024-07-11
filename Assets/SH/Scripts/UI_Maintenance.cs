@@ -10,6 +10,9 @@ public class UI_Maintenance : UI_Scene
     {
         Soul = 0,
         Level,
+        
+        // for the state display
+        CurrentState,
     }
 
     enum Images
@@ -23,7 +26,17 @@ public class UI_Maintenance : UI_Scene
         EquipmentForce,
         Store,
         VillageAttack,
-        Test,
+        Test, // for the test of stat on display
+        
+        // Just for the test of state transition
+        StateIdle,
+        StateHit,
+        StateDie,
+        StateMove,
+        StateAttack,
+        StateEvade,
+        StateSkill,
+        StateInteract
     }
 
     private void Start()
@@ -43,7 +56,46 @@ public class UI_Maintenance : UI_Scene
         GetButton((int)Buttons.EquipmentForce).gameObject.BindEvent(EquipmentForce);
         GetButton((int)Buttons.Store).gameObject.BindEvent(Store);
         GetButton((int)Buttons.VillageAttack).gameObject.BindEvent(VillageAttack);
+        
+        // yjkim added
         GetButton((int)Buttons.Test).gameObject.BindEvent(UpdatePlayerStatUI);
+        GetButton((int)Buttons.StateIdle).gameObject.BindEvent
+        (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+            (Managers.Game.player.StateHandler.GetState(ActionType.Idle)));
+        GetButton((int)Buttons.StateHit).gameObject.BindEvent
+            (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+                (Managers.Game.player.StateHandler.GetState(ActionType.Hit)));
+        GetButton((int)Buttons.StateDie).gameObject.BindEvent
+            (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+                (Managers.Game.player.StateHandler.GetState(ActionType.Die)));
+        GetButton((int)Buttons.StateMove).gameObject.BindEvent
+            (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+                (Managers.Game.player.StateHandler.GetState(ActionType.Move)));
+        GetButton((int)Buttons.StateAttack).gameObject.BindEvent
+            (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+                (Managers.Game.player.StateHandler.GetState(ActionType.Attack)));
+        GetButton((int)Buttons.StateEvade).gameObject.BindEvent
+            (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+                (Managers.Game.player.StateHandler.GetState(ActionType.Evade)));
+        GetButton((int)Buttons.StateSkill).gameObject.BindEvent
+            (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+                (Managers.Game.player.StateHandler.GetState(ActionType.Skill)));
+        GetButton((int)Buttons.StateInteract).gameObject.BindEvent
+            (data => Managers.Game.player.StateHandler.stateMachine.ChangeState
+                (Managers.Game.player.StateHandler.GetState(ActionType.Interact)));
+        GetButton((int)Buttons.StateIdle).gameObject.BindEvent(UpdateStateText);
+        GetButton((int)Buttons.StateHit).gameObject.BindEvent(UpdateStateText);
+        GetButton((int)Buttons.StateDie).gameObject.BindEvent(UpdateStateText);
+        GetButton((int)Buttons.StateMove).gameObject.BindEvent(UpdateStateText);
+        GetButton((int)Buttons.StateAttack).gameObject.BindEvent(UpdateStateText);
+        GetButton((int)Buttons.StateEvade).gameObject.BindEvent(UpdateStateText);
+        GetButton((int)Buttons.StateSkill).gameObject.BindEvent(UpdateStateText);
+        GetButton((int)Buttons.StateInteract).gameObject.BindEvent(UpdateStateText);
+    }
+
+    void UpdateStateText(PointerEventData obj)
+    {
+        Get<TextMeshProUGUI>((int)Texts.CurrentState).text = $"{Managers.Game.player.StateHandler.stateMachine.GetCurrentState()}";
     }
 
     private void VillageAttack(PointerEventData data)

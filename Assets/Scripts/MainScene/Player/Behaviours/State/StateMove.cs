@@ -17,4 +17,16 @@ public class StateMove : StateBase
         Debug.Log("State Move Exit");
         Managers.Game.player.isMoving = false;
     }
+
+    public override bool CanTransitState(IState state)
+    {
+        // below two condition works same
+        //if (state.GetType() == typeof(StateDie))
+        if (state is StateDie)
+        {
+            Debug.Log($"Cannot transit to {GetType()} from {state.GetType()}");
+            return false;
+        }
+        return true;
+    }
 }

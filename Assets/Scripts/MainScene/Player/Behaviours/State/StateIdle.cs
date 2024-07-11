@@ -16,4 +16,9 @@ public class StateIdle : StateBase
     {
         Debug.Log("State Idle Exit");
     }
+
+    public override bool CanTransitState(IState state)
+    {
+        return true;
+    }
 }

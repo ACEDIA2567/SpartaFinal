@@ -28,13 +28,12 @@ public enum InputStatus
 public enum ActionType
 {
     Idle,
+    Hit,
+    Die,
     Move,
-    JoystickDown,
-    JoystickMove,
     Attack,
     Evade,
     Skill,
-    SkillB,
     Interact,
     Count,
 }

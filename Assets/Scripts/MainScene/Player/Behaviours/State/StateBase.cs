@@ -10,4 +10,5 @@ public abstract class StateBase : IState
     public abstract void Enter();
 
     public abstract void Exit();
+    public abstract bool CanTransitState(IState state);
 }
