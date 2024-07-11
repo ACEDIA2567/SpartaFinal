@@ -42,15 +42,12 @@ public class Explosion : MonoBehaviour, IAttackable
         return true;
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // collision.TryGetComponent<IDamagable>(out IDamagable damagable) && 
         if (collision.gameObject.CompareTag("Player"))
         {
             //target = damagable;
-            Debug.Log("ÆøÅº °ø°Ý ¹üÀ§ µé¾î¿È");
         }
     }
 
