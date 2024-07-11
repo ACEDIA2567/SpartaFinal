@@ -7,6 +7,7 @@ public class EnemyAnimator : MonoBehaviour
     public Enemy enemy;
     Animator animator;
 
+    private static readonly int isidle = Animator.StringToHash("IsIdle");
     private static readonly int isMove = Animator.StringToHash("IsMove");
     private static readonly int isHit = Animator.StringToHash("IsHit");
     private static readonly int isDie = Animator.StringToHash("IsDie");
@@ -22,10 +23,19 @@ public class EnemyAnimator : MonoBehaviour
     {
         enemy.attackEvent += Attacking;
         enemy.hitEvent += Hit;
+        enemy.moveEvent += Move;
+        enemy.idleEvent += Idle;
+    }
+
+    private void Idle()
+    {
+        animator.SetBool(isMove, false);
+        animator.SetBool(isidle, true);
     }
 
     private void Move()
     {
+        animator.SetBool(isidle, false);
         animator.SetBool(isMove, true);
     }
 

@@ -15,6 +15,8 @@ public abstract class Enemy : MonoBehaviour, IAttackable, IDamagable
     protected EnemyAnimator enemyAnimator;
     public Action attackEvent;
     public Action hitEvent;
+    public Action moveEvent;
+    public Action idleEvent;
 
     private float attackTime = 0;
 
