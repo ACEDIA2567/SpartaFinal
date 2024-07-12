@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { Weapon, Armor, Ring }
+//public enum ItemType { Weapon, Armor, Ring }
+public enum ItemType { Weapon, Armor, Ring } //Test
 public enum ItemRarity { Normal, Rare, Epic, Legendary }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Item")]

@@ -19,7 +19,7 @@ public class UI_EquipmentForce : UI_PopUp
         ExitBtn
     }
 
-    private List<Item> equipmentItems;
+    private List<Item> equipmentItems = new List<Item>();
 
     private void Start()
     {
@@ -37,11 +37,19 @@ public class UI_EquipmentForce : UI_PopUp
 
         GetButton((int)Buttons.CharacterForceBtn).gameObject.BindEvent(CharacterForceBtn);
         GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(ExitBtn);
+
+        MakeSlots();
     }
 
     private void LoadItems()
     {
         // todo :: 인벤토리에 있는 무기, 외피, 반지 가져오기
+        for(int i = 0; i < 3; i++)
+        {
+            ItemType type = (ItemType)i;
+            Item item = Managers.Game.player.Inventory.GetEquippedItem(type);
+            equipmentItems.Add(item);
+        }
     }
 
     private void ExitBtn(PointerEventData data)
@@ -61,6 +69,14 @@ public class UI_EquipmentForce : UI_PopUp
         // 패널 초기화
         foreach (Transform child in slots.transform)
             Managers.Resource.Destroy(child.gameObject);
+
+        foreach(Item items in equipmentItems)
+        {
+            GameObject stat = Managers.UI.MakeItems<UI_EquipmentForce_item>(parent: slots.transform).gameObject;
+
+            UI_EquipmentForce_item equipmentStatForce = stat.GetOrAddComponent<UI_EquipmentForce_item>();
+            equipmentStatForce.SetInfo(items);
+        }
 
         //for (int i = 0; i < 3; i++)
         //{
