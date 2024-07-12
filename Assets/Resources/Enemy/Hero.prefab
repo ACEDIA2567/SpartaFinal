@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  moveStop: 0
   chase: 0
   attacking: 0
   turn: 0
