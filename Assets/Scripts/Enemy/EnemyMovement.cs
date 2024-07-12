@@ -10,12 +10,13 @@ public class EnemyMovement : MonoBehaviour
     private CircleCollider2D circleCollider2D;
     private Rigidbody2D rigid;
 
-    private Vector3 startPos; // 시작 지점
+    public Vector3 startPos; // 시작 지점
     private WaitForSeconds delay = new WaitForSeconds(0.02f);
     private Vector3 flipX = new Vector3(1, 1, 1);
     private float tolerance = 0.1f; // 거리 임계값
 
     // 플레이어 추격 관련
+    public bool moveStop = false;
     public bool chase = false;
     public bool attacking = false;
     public bool turn = false;
@@ -52,6 +53,9 @@ public class EnemyMovement : MonoBehaviour
         // 타겟 위치 설정
         // 싱글톤 또는 Find로 플레이어 위치 검색
         target = GameObject.Find("Player").transform;
+        enemy.attackEvent += MoveStopChange;
+        enemy.hitEvent += MoveStopChange;
+        enemy.dieEvent += MoveStopChange;
     }
 
     protected void FixedUpdate()
@@ -75,6 +79,7 @@ public class EnemyMovement : MonoBehaviour
 
     protected void OnEnable()
     {
+        moveStop = true;
         if (enemy.status.monsterType != MonsterType.Boss)
         {
             StartCoroutine(RayPlayer());
@@ -88,6 +93,18 @@ public class EnemyMovement : MonoBehaviour
     //    Gizmos.color = Color.red;
     //    Gizmos.DrawWireCube(transform.position, size);
     //}
+
+    private void MoveStopChange()
+    {
+        if (moveStop)
+        {
+            moveStop = false;
+        }
+        else
+        {
+            moveStop = true;
+        }
+    }
 
     private void Movement(Vector3 pos)
     {
@@ -106,7 +123,7 @@ public class EnemyMovement : MonoBehaviour
                 enemy.idleEvent?.Invoke();
             }
         }
-        else if (!chase && Vector3.Distance(pos, transform.position) < tolerance)
+        else if (!chase && pos.magnitude < tolerance)
         {
             enemy.idleEvent?.Invoke();
             TargetMove(Vector2.zero);
@@ -132,7 +149,7 @@ public class EnemyMovement : MonoBehaviour
 
     protected void TargetMove(Vector2 direction)
     {
-        rigid.velocity = direction * enemy.status.moveSpeed;
+        rigid.velocity = direction * enemy.status.moveSpeed * (moveStop ? 1 : 0);
     }
 
     // Ray로 플레이어
