@@ -7,9 +7,10 @@ public class EnemyAnimator : MonoBehaviour
     public Enemy enemy;
     Animator animator;
 
+    private static readonly int isidle = Animator.StringToHash("IsIdle");
     private static readonly int isMove = Animator.StringToHash("IsMove");
-    private static readonly int isHit = Animator.StringToHash("IsHit");
-    private static readonly int isDie = Animator.StringToHash("IsDie");
+    private static readonly int TriggerHit = Animator.StringToHash("Hit");
+    private static readonly int TriggerDie = Animator.StringToHash("Die");
     private static readonly int Attack = Animator.StringToHash("Attack");
 
     private void Awake()
@@ -22,10 +23,20 @@ public class EnemyAnimator : MonoBehaviour
     {
         enemy.attackEvent += Attacking;
         enemy.hitEvent += Hit;
+        enemy.moveEvent += Move;
+        enemy.idleEvent += Idle;
+        enemy.dieEvent += Die;
+    }
+
+    private void Idle()
+    {
+        animator.SetBool(isMove, false);
+        animator.SetBool(isidle, true);
     }
 
     private void Move()
     {
+        animator.SetBool(isidle, false);
         animator.SetBool(isMove, true);
     }
 
@@ -36,11 +47,11 @@ public class EnemyAnimator : MonoBehaviour
 
     private void Hit()
     {
-        animator.SetBool(isHit, true);
+        animator.SetTrigger(TriggerHit);
     }
 
     private void Die()
     {
-        animator.SetBool(isDie, true);
+        animator.SetTrigger(TriggerDie);
     }
 }

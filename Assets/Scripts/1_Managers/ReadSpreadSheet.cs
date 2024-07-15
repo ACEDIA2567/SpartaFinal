@@ -23,10 +23,6 @@ public class ReadSpreadSheet : MonoBehaviour
     public void Awake()
     {
         sheetDatas.Add(typeof(EnemyStatus), GetCSVAddress(adress, range, sheetID));
-    }
-
-    private void Start()
-    {
         StartCoroutine(LoadData());
     }
 
@@ -53,9 +49,8 @@ public class ReadSpreadSheet : MonoBehaviour
                     // Resource의 오브젝트에 해당 정보 전달
                     GameObject SpawnEnemy = Resources.Load<GameObject>($"Enemy/{enemyStatus.name}");
                     SpawnEnemy.name = enemyStatus.name;
-                    SpawnEnemy.GetComponent<Enemy>().status = enemyStatus;
-                    Managers.Pool.CreatePool(SpawnEnemy, 10);
-                    Managers.Pool.Pop(SpawnEnemy, transform.parent);
+                    SpawnEnemy.GetComponentInChildren<Enemy>().status = enemyStatus;
+                    Managers.Pool.CreatePool(SpawnEnemy, 20);
                 }
             }
         }

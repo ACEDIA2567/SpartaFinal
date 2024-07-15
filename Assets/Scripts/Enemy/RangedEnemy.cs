@@ -13,17 +13,13 @@ public class RangedEnemy : Enemy
         base.Awake();
     }
 
-    private void Start()
-    {
-        attackEvent += SpawnProjectile;
-    }
-
     private void SpawnProjectile()
     {
         if(AttackType == false)
         {
             GameObject tile = Managers.Pool.Pop(projectile, transform.parent).gameObject;
             tile.transform.position = transform.position;
+            enemyMovement.direction.Normalize();
             tile.GetComponent<ProjectileController>().direction = enemyMovement.direction;
         }
         else

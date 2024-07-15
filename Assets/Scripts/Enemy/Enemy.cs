@@ -8,13 +8,16 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-public abstract class Enemy : MonoBehaviour, IAttackable, IDamagable
+public abstract class Enemy : MonoBehaviour, IDamagable
 {
     public EnemyStatus status;
     protected EnemyMovement enemyMovement;
     protected EnemyAnimator enemyAnimator;
     public Action attackEvent;
     public Action hitEvent;
+    public Action moveEvent;
+    public Action idleEvent;
+    public Action dieEvent;
 
     private float attackTime = 0;
 
@@ -25,11 +28,16 @@ public abstract class Enemy : MonoBehaviour, IAttackable, IDamagable
         attackTime = status.attackSpeed * 2;
     }
 
+    private void Start()
+    {
+        hitEvent += AttackTimeClear;
+    }
+
     private void Update()
     {
         if (attackTime < 0)
         {
-            attackTime = status.attackSpeed * 2;
+            AttackTimeClear();
             enemyMovement.attacking = false;
         }
         else if(attackTime > 0 && enemyMovement.attacking)
@@ -40,40 +48,42 @@ public abstract class Enemy : MonoBehaviour, IAttackable, IDamagable
 
     protected void OnEnable()
     {
-        StartCoroutine(ApplyDamage(5));
+        idleEvent?.Invoke();
+        StartCoroutine(ApplyDamage(1));
     }
 
-    protected void EnemyDie()
+    private void AttackTimeClear()
     {
-        Managers.Pool.Push(gameObject);
+        attackTime = status.attackSpeed * 2;
     }
 
-    public virtual bool Attack(IDamagable target, float power, int numberOfAttacks = 0)
+    private void EnemyDie()
     {
-        //if (target == null) return false;
-
-        //StartCoroutine(target.ApplyDamage(power));
-
-        //enemyMovement.attacking = false;
-        return true;
+        Managers.Pool.Push(transform.parent.gameObject);
     }
 
-    public virtual IEnumerator ApplyDamage(float dmg)
+
+    public IEnumerator ApplyDamage(float dmg)
     {
-        if (status.health < 0)
+        while(status.health >= 0)
         {
-            EnemyDie();
-        }
-        else
-        {
-            status.health -= (int)dmg;
-            if (!enemyMovement.chase && !enemyMovement.turn)
+            if (status.health <= 0)
             {
-                enemyMovement.chase = true;
-                enemyMovement.trackingTime = 10;
+                dieEvent?.Invoke();
             }
+            else
+            {
+                hitEvent?.Invoke();
+                status.health -= (int)dmg;
+                if (!enemyMovement.chase && !enemyMovement.turn)
+                {
+                    enemyMovement.chase = true;
+                    enemyMovement.trackingTime = 10;
+                }
+            }
+            yield return new WaitForSeconds(3.0f);
         }
+
         
-        yield return null;
     }
 }
