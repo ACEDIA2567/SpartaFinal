@@ -8,7 +8,7 @@ public class BehaviourJoystick : BehaviourMove
 {
     PointerEventData eventData;
     List<RaycastResult> raycastResults;
-    UIInputStick joystick;
+//    UIInputStick joystick;
 
     JoystickMode controlMode;
     void Start()
@@ -54,7 +54,7 @@ public class BehaviourJoystick : BehaviourMove
 
         if (!stickActive) return;
 
-        BeginInteraction(screenPosition, Util.GetCameraFromCanvas(joystick.canv));
+//        BeginInteraction(screenPosition, Util.GetCameraFromCanvas(joystick.canv));
     }
     
     void OnPointerMove(InputAction.CallbackContext obj)
@@ -64,7 +64,7 @@ public class BehaviourJoystick : BehaviourMove
 
         Vector2 screenPosition = ((Pointer)obj.control.device).position.ReadValue();
 
-        Vector2 dir = (screenPosition - (Vector2)joystick.transform.position);
+//        Vector2 dir = (screenPosition - (Vector2)joystick.transform.position);
 //        MoveStick(screenPosition, Util.GetCameraFromCanvas(joystick.canv));
     }
 
@@ -75,8 +75,8 @@ public class BehaviourJoystick : BehaviourMove
 
     void BeginInteraction(Vector2 screenPosition, Camera getCameraFromCanvas)
     {
-        RectTransform canvasRect = joystick.canv.GetComponent<RectTransform>();
-        if (canvasRect == null)
+//        RectTransform canvasRect = joystick.canv.GetComponent<RectTransform>();
+//        if (canvasRect == null)
         {
             Debug.LogError("BeginInteraction");
             return;

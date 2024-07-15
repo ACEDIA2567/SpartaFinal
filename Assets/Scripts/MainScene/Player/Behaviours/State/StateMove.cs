@@ -10,6 +10,7 @@ public class StateMove : StateBase
     {
         Debug.Log("State Move Enter");
         Managers.Game.player.isMoving = true;
+        Managers.Game.player.SpumPrefabs.PlayAnimation(nameof(SPUM_AnimClipList.Run));
     }
 
     public override void Exit()

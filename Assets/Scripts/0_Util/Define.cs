@@ -38,6 +38,15 @@ public enum ActionType
     Count,
 }
 
+public enum SPUM_AnimClipList
+{
+    idle,
+    Run,
+    Attack_Normal,
+    Death,
+    Skill_Normal,
+}
+
 public enum AxisOptions
 {
     Both,

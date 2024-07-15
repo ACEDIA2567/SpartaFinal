@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class StateAttack : StateBase
@@ -9,6 +10,7 @@ public class StateAttack : StateBase
     public override void Enter()
     {
         Debug.Log("State Attack Enter");
+        Managers.Game.player.SpumPrefabs.PlayAnimation(nameof(SPUM_AnimClipList.Attack_Normal));
     }
 
     public override void Exit()

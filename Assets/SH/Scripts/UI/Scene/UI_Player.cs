@@ -59,25 +59,26 @@ public class UI_Player : UI_Scene
 
     private void SkillBtn_2(PointerEventData data)
     {
-        // todo :: ½ºÅ³2 Action
-        Debug.Log("½ºÅ³2");
+        // todo :: ï¿½ï¿½Å³2 Action
+        Debug.Log("ï¿½ï¿½Å³2");
     }
 
     private void SkillBtn_1(PointerEventData data)
     {
-        // todo :: ½ºÅ³1 Action
-        Debug.Log("½ºÅ³1");
+        // todo :: ï¿½ï¿½Å³1 Action
+        Debug.Log("ï¿½ï¿½Å³1");
     }
 
     private void InteractBtn(PointerEventData data)
     {
-        // todo :: »óÈ£ÀÛ¿ë
-        Debug.Log("»óÈ£ÀÛ¿ë");
+        // todo :: ï¿½ï¿½È£ï¿½Û¿ï¿½
+        Debug.Log("ï¿½ï¿½È£ï¿½Û¿ï¿½");
     }
 
     private void AttackBtn(PointerEventData data)
     {
         // todo :: Attack Action
-        Debug.Log("°ø°Ý");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
+        Managers.Game.player.SpumPrefabs.PlayAnimation(nameof(SPUM_AnimClipList.Attack_Normal));
     }
 }

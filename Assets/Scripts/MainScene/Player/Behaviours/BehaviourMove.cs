@@ -8,6 +8,7 @@ public class BehaviourMove : BehaviourInput
 {
     [SerializeField] protected float speed;
     protected Rigidbody2D rb2D;
+    
     protected PlayerInputHandler handler;
     void Start()
     {
@@ -39,6 +40,14 @@ public class BehaviourMove : BehaviourInput
     {
         // Movement
         rb2D.velocity = speed * context.ReadValue<Vector2>().normalized;
+        if (rb2D.velocity.x > 0)
+        {
+            Managers.Game.player.transform.localScale = new Vector3(-1,1,1); // default facing: left, we use Vector3.left for facing right
+        }
+        else
+        {
+            Managers.Game.player.transform.localScale = new Vector3(1, 1, 1);
+        }
             
         action[(int)InputStatus.Performed]?.Invoke();
     }

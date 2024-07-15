@@ -49,7 +49,7 @@ public class UI_Maintenance : UI_Scene
         GetButton((int)Buttons.EquipmentForce).gameObject.BindEvent(EquipmentForce);
         GetButton((int)Buttons.Store).gameObject.BindEvent(Store);
         GetButton((int)Buttons.VillageAttack).gameObject.BindEvent(VillageAttack);
-        GetButton((int)Buttons.Test).gameObject.BindEvent(UpdatePlayerStatUI);
+//        GetButton((int)Buttons.Test).gameObject.BindEvent(UpdatePlayerStatUI);
     }
 
     private void VillageAttack(PointerEventData data)
@@ -75,13 +75,13 @@ public class UI_Maintenance : UI_Scene
     public void UpdatePlayerStatUI(PointerEventData data)
     {
         PlayerStatHandler statHandler = Managers.Game.player.StatHandler;
-        int lv =     (statHandler.GetStat(StatSpecies.LV) as StatInt).value;
-        int curExp = (statHandler.GetStat(StatSpecies.Exp) as StatInt).value;
-        int maxExp = (statHandler.GetStat(StatSpecies.MaxExp) as StatInt).value;
+        int lv =     statHandler.GetStat<int>(StatSpecies.LV).value;
+        int curExp = statHandler.GetStat<int>(StatSpecies.Exp).value;
+        int maxExp = statHandler.GetStat<int>(StatSpecies.MaxExp).value;
         int soulCount = Managers.Game.player.Inventory.soulCount;
 
-        Get<TextMeshProUGUI>((int)Texts.Soul).text = $"{soulCount} 소울";
-        Get<TextMeshProUGUI>((int)Texts.Level).text = $"{lv} LV";
+        Get<TextMeshProUGUI>((int)Texts.SoulCnt).text = $"{soulCount} 소울";
+        Get<TextMeshProUGUI>((int)Texts.LevelCnt).text = $"{lv} LV";
         GetImage((int)Images.LevelAmount).fillAmount = (float)curExp / maxExp;
         Debug.Log((float)curExp/maxExp);
     }
