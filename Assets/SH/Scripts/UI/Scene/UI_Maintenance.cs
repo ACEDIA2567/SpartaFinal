@@ -51,7 +51,6 @@ public class UI_Maintenance : UI_Scene
 
     private void Store(PointerEventData data)
     {
-        Debug.Log("클릭");
         Managers.UI.ShowPopupUI<UI_Store>();
     }
 

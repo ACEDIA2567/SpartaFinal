@@ -12,6 +12,9 @@ public class UIManager
     Stack<UI_PopUp> _popupStack = new Stack<UI_PopUp>();
     UI_Scene _sceneUI = null;
 
+    // Store에서 사용
+    public List<Item> storeSaveItems;
+
     public GameObject Root
     {
         get

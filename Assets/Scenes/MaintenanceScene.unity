@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 766420383674591881}
   - component: {fileID: 2334498811320695589}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: '@ItemManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,8 +942,8 @@ SceneRoots:
   - {fileID: 1121150783}
   - {fileID: 6332750297536629580}
   - {fileID: 1508309408650260038}
-  - {fileID: 766420383674591881}
   - {fileID: 2474653400582555483}
   - {fileID: 999442979}
   - {fileID: 52555760}
   - {fileID: 1944070876}
+  - {fileID: 766420383674591881}

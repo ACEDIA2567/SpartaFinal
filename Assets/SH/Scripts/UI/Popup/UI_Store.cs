@@ -18,8 +18,9 @@ public class UI_Store : UI_PopUp
         ExitBtn
     }
 
+    // 리팩토링 : setactive(false)로 바꿔서 이 스크립트에서 다 끝내게 해야함
     private List<Item> currentItems;
-    bool isFirst;
+    private List<Item> saveItems;
 
     private void Start()
     {
@@ -30,50 +31,61 @@ public class UI_Store : UI_PopUp
     {
         base.Init();
 
+        // UI
         Bind<Button>(typeof(Buttons));
         Bind<GameObject>(typeof(GameObjects));
 
-        Debug.Log(isFirst);
-        if(!isFirst)
+        GetButton((int)Buttons.RerollBtn).gameObject.BindEvent(RerollBtn);
+        GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(ExitBtn);
+
+        // Feature
+        saveItems = Managers.UI.storeSaveItems;
+
+        if (saveItems != null)
         {
-            RefreshItems();
-            isFirst = !isFirst;
+            currentItems = saveItems;
+            MakeSlots();
         }
         else
         {
-            ItemInit();
+            Reroll();
         }
-
-        GetButton((int)Buttons.RerollBtn).gameObject.BindEvent(RerollBtn);
-        GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(ExitBtn);
-    }
-
-    private void ItemInit()
-    {
-        MakeSlots();
     }
 
     private void ExitBtn(PointerEventData data)
     {
+        Managers.UI.storeSaveItems = currentItems; // 현재 아이템 리스트 저장
+
         base.ClosePopupUI();
     }
 
     private void RerollBtn(PointerEventData data)
     {
-        RefreshItems();
+        Reroll();
     }
 
-    private void RefreshItems()
+    /// <summary>
+    /// 리롤 버튼
+    /// </summary>
+    private void Reroll()
     {
-        currentItems = ItemManager.Instance.GetRandomItems(3);
-
+        RefreshItems();
         MakeSlots();
     }
 
-    // ites slot 생성
+    /// <summary>
+    /// 아이템 랜덤 생성
+    /// </summary>
+    private void RefreshItems()
+    {
+        currentItems = ItemManager.Instance.GetRandomItems(3);
+    }
+
+    /// <summary>
+    /// item slot 생성
+    /// </summary>
     private void MakeSlots()
     {
-        Debug.Log("MakeSlots");
         GameObject slots = Get<GameObject>((int)GameObjects.StoreSlots);
 
         // 패널 초기화
