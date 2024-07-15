@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEngine;
 
 public class PlayerStatHandler
 {
@@ -31,12 +32,45 @@ public class PlayerStatHandler
     {
         return stats[(int)species];
     }
+
+    public void AddExp(int exp)
+    {
+        GetStat(StatSpecies.Exp).AddValue(exp);
+        LevelUp(1);
+    }
+
+    // for debug, the access modified to `public`
+    // after the debugging procedure, turn it to private
+    public void LevelUp(int val = 1)
+    {
+        int curExp = GetStat(StatSpecies.Exp).GetStatIntValue();
+        int maxExp = GetStat(StatSpecies.MaxExp).GetStatIntValue();
+        if (curExp >= maxExp)
+        {
+            GetStat(StatSpecies.LV).AddValue(val);
+            GetStat(StatSpecies.Exp).AddValue(-curExp);
+            int newMax = GetStat(StatSpecies.LV).GetStatIntValue()*10;
+            GetStat(StatSpecies.MaxExp).AddValue(-maxExp + newMax);
+        }
+    }
 }
 
-public class StatBase
+public abstract class StatBase
 {
     public string name { get; protected set; }
-    
+
+    public virtual int GetStatIntValue()
+    {
+        return 0;
+    }
+
+    public virtual string GetStatStringValue()
+    {
+        return "";
+    }
+
+    public abstract void AddValue(int ival = 0, string sval = "");
+
 }
 public class StatInt : StatBase
 {
@@ -46,6 +80,16 @@ public class StatInt : StatBase
     {
         this.name = "";
         this.value = value;
+    }
+
+    public override int GetStatIntValue()
+    {
+        return value;
+    }
+
+    public override void AddValue(int ival =0, string sval = "")
+    {
+        value += ival;
     }
 }
 
@@ -57,5 +101,15 @@ public class StatString : StatBase
     {
         this.name = name;
         this.value = value;
+    }
+
+    public override string GetStatStringValue()
+    {
+        return value;
+    }
+
+    public override void AddValue(int ival = 0, string sval = "")
+    {
+        value += sval;
     }
 }

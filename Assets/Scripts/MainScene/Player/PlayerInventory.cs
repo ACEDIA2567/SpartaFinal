@@ -22,6 +22,11 @@ public class PlayerInventory : MonoBehaviour
         // call data from Save file
     }
 
+    public void GiveSoul(int amount)
+    {
+        soulCount += amount;
+    }
+
     public void ReplaceItem(Item item)
     {
         if (soulCount >= item.soulCost)
