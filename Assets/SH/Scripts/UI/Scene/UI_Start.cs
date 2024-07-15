@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -12,11 +13,11 @@ public class UI_Start : UI_Scene
 {
     enum Texts
     {
-        Title = 0,
+        StartMessage = 0,
     }
-    enum Buttons
+    enum Images
     {
-        GamePlay = 0,
+        BackBoard = 0,
     }
 
     // Start is called before the first frame update
@@ -29,13 +30,13 @@ public class UI_Start : UI_Scene
     {
         base.Init();
 
+        Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
-        Bind<Button>(typeof(Buttons));
 
-        GetButton((int)Buttons.GamePlay).gameObject.BindEvent(GamePlay);
+        GetImage((int)Images.BackBoard).gameObject.BindEvent(BackBoard);
     }
 
-    private void GamePlay(PointerEventData data)
+    private void BackBoard(PointerEventData data)
     {
         Managers.Scene.LoadScene(SceneType.MaintenanceScene);
     }

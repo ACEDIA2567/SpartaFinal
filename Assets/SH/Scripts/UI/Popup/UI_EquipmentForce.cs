@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class UI_EquipmentForce : UI_PopUp
 {
@@ -70,20 +71,15 @@ public class UI_EquipmentForce : UI_PopUp
         foreach (Transform child in slots.transform)
             Managers.Resource.Destroy(child.gameObject);
 
-        foreach(Item items in equipmentItems)
+        for(int i = 0; i < 3; i++)
         {
+            if (equipmentItems[i] == null)
+                equipmentItems[i] = ItemManager.Instance.none;
+
             GameObject stat = Managers.UI.MakeItems<UI_EquipmentForce_item>(parent: slots.transform).gameObject;
 
             UI_EquipmentForce_item equipmentStatForce = stat.GetOrAddComponent<UI_EquipmentForce_item>();
-            equipmentStatForce.SetInfo(items);
+            equipmentStatForce.SetInfo(equipmentItems[i]);
         }
-
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    GameObject stat = Managers.UI.MakeItems<UI_EquipmentForce_item>(parent: slots.transform).gameObject;
-
-        //    UI_EquipmentForce_item equipmentStatForce = stat.GetOrAddComponent<UI_EquipmentForce_item>();
-        //    equipmentStatForce.SetInfo();
-        //}
     }
 }

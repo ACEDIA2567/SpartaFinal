@@ -73,3 +73,5 @@ crashlytics-build.properties
 
 # Limitation for paid asset
 /[Aa]ssets/[Aa]ssetStore/*
+/[Aa]ssets/SPUM
+/[Aa]ssets/[Rr]esources/SPUM

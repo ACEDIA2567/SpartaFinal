@@ -19,6 +19,7 @@ public class UI_Store : UI_PopUp
     }
 
     private List<Item> currentItems;
+    bool isFirst;
 
     private void Start()
     {
@@ -32,10 +33,24 @@ public class UI_Store : UI_PopUp
         Bind<Button>(typeof(Buttons));
         Bind<GameObject>(typeof(GameObjects));
 
-        RefreshItems();
+        Debug.Log(isFirst);
+        if(!isFirst)
+        {
+            RefreshItems();
+            isFirst = !isFirst;
+        }
+        else
+        {
+            ItemInit();
+        }
 
         GetButton((int)Buttons.RerollBtn).gameObject.BindEvent(RerollBtn);
         GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(ExitBtn);
+    }
+
+    private void ItemInit()
+    {
+        MakeSlots();
     }
 
     private void ExitBtn(PointerEventData data)
@@ -52,11 +67,11 @@ public class UI_Store : UI_PopUp
     {
         currentItems = ItemManager.Instance.GetRandomItems(3);
 
-        MakeSlots(currentItems);
+        MakeSlots();
     }
 
     // ites slot »ý¼º
-    private void MakeSlots(List<Item> currentItems)
+    private void MakeSlots()
     {
         Debug.Log("MakeSlots");
         GameObject slots = Get<GameObject>((int)GameObjects.StoreSlots);
