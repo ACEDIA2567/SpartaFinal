@@ -2,25 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class UI_Start : UI_Scene
+public class UI_Result : UI_PopUp
 {
     enum Texts
     {
         Title = 0,
+        AcquiredSoul,
+        AcquiredLevel,
+
     }
     enum Buttons
     {
-        GamePlay = 0,
+        BackToMaintenance = 0
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Init();
     }
@@ -29,15 +29,14 @@ public class UI_Start : UI_Scene
     {
         base.Init();
 
-        Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
+        Bind<TextMeshProUGUI>(typeof(Texts));
 
-        GetButton((int)Buttons.GamePlay).gameObject.BindEvent(GamePlay);
+        GetButton((int)Buttons.BackToMaintenance).gameObject.BindEvent(BackToMaintenance);
     }
 
-    private void GamePlay(PointerEventData data)
+    private void BackToMaintenance(PointerEventData data)
     {
         Managers.Scene.LoadScene(SceneType.MaintenanceScene);
     }
-
 }

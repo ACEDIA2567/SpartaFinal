@@ -16,7 +16,7 @@ public class PlayerInventory : MonoBehaviour
 
     void Init()
     {
-        soulCount = 0;
+        soulCount = 1000;
         // total count of equipments : 3
         items = new Item[Enum.GetNames(typeof(ItemType)).Length];
         // call data from Save file
@@ -41,7 +41,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     public Item GetEquippedItem(ItemType type) => items[(int)type];
-    
+
     //public void EnchantItem(ItemType type)
     //{
     //    float p = 1f;

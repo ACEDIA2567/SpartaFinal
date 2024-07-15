@@ -887,6 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e39f19d17c4f1e8f89acbdf213196c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soulCount: 0
   items: []
 --- !u!50 &8641621278069564138
 Rigidbody2D:
