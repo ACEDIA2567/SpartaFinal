@@ -41,7 +41,7 @@ public class UI_Store_Item : UI_PopUp
 
         GetImage((int)Images.ItemImg).sprite = itemImg;
         GetText((int)Texts.ItemName).text = itemName;
-        GetText((int)Texts.CostText).text = $"{costText}¼Ò¿ï";
+        GetText((int)Texts.CostText).text = $"{costText}";
 
         GetButton((int)Buttons.UI_Store_Item).gameObject.BindEvent(BuyItem);
     }

@@ -8,7 +8,6 @@ public class UI_Maintenance : UI_Scene
 {
     enum Texts
     {
-        SoulCnt = 0,
         LevelCnt,
     }
 

@@ -10,7 +10,7 @@ public class UI_EquipmentForce_item : UI_PopUp
 {
     enum Texts
     {
-        ItemText = 0,
+        ItemName = 0,
     }
 
     enum Buttons
@@ -21,6 +21,7 @@ public class UI_EquipmentForce_item : UI_PopUp
     enum Images
     {
         ItemImg = 0,
+        Frame,
     }
 
     private void Start()
@@ -42,7 +43,7 @@ public class UI_EquipmentForce_item : UI_PopUp
         Bind<TextMeshProUGUI>(typeof(Texts));
 
         //todo::각 오브젝트에 값 넣기
-        GetText((int)Texts.ItemText).GetComponent<TextMeshProUGUI>().text = itemText;
+        GetText((int)Texts.ItemName).GetComponent<TextMeshProUGUI>().text = itemText;
         GetImage((int)Images.ItemImg).GetComponent<Image>().sprite = itemImg;
     }
 

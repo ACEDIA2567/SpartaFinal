@@ -57,6 +57,7 @@ public class SoundManager
         }
         return false;
     }
+
     public void Stop(Sounds type)
     {
         if (audioSources[(int)type])
