@@ -11,7 +11,9 @@ public class LoadSceneManager
     {
         Managers.Clear();
 
-        SceneManager.LoadScene(GetSceneName(type));
+        // 로딩 씬으로 이동
+        LoadingManager.TargetScene = GetSceneName(type);
+        SceneManager.LoadScene("LoadingScene");
     }
 
     string GetSceneName(SceneType type)
