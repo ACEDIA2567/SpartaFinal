@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 7043427693086540103}
   - component: {fileID: 9155485686151060856}
   - component: {fileID: 6796208798753341905}
+  - component: {fileID: 6950748919569458777}
   m_Layer: 5
   m_Name: InteractBtn
   m_TagString: Untagged
@@ -256,6 +257,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6950748919569458777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223437412598492829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/l
 --- !u!1 &427126249623629851
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +679,7 @@ GameObject:
   - component: {fileID: 5097394872316503336}
   - component: {fileID: 3145748219541327236}
   - component: {fileID: 1166036387260271394}
+  - component: {fileID: 3618131807854559867}
   m_Layer: 5
   m_Name: SkillBtn_1
   m_TagString: Untagged
@@ -774,6 +789,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3618131807854559867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4332695151082429915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/semicolon
 --- !u!1 &4401250019365526708
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +853,7 @@ GameObject:
   - component: {fileID: 897148552223667155}
   - component: {fileID: 3311782687049797868}
   - component: {fileID: 4359440413788137730}
+  - component: {fileID: 3209342841666014372}
   m_Layer: 5
   m_Name: AttackBtn
   m_TagString: Untagged
@@ -934,6 +963,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3209342841666014372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4609688908730427479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/l
 --- !u!1 &4614542635402198221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1181,7 @@ GameObject:
   - component: {fileID: 2025490139413199501}
   - component: {fileID: 3913838441228678978}
   - component: {fileID: 3353028759647784298}
+  - component: {fileID: 8447151017026798344}
   m_Layer: 5
   m_Name: SkillBtn_2
   m_TagString: Untagged
@@ -1248,6 +1291,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8447151017026798344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729259211647720152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/quote
 --- !u!1 &6804358630618197121
 GameObject:
   m_ObjectHideFlags: 0

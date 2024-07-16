@@ -25,7 +25,7 @@ public class UIController : MonoBehaviour
         {
             if (weapon != null)
             {
-                weaponImage.sprite = weapon.itemImage;
+                weaponImage.sprite = weapon.itemImage[0];
                 weaponDescription.text = weapon.description;
             }
             else
@@ -36,7 +36,7 @@ public class UIController : MonoBehaviour
 
             if (armor != null)
             {
-                armorImage.sprite = armor.itemImage;
+                armorImage.sprite = armor.itemImage[0];
                 armorDescription.text = armor.description;
             }
             else
@@ -47,7 +47,7 @@ public class UIController : MonoBehaviour
 
             if (ring != null)
             {
-                ringImage.sprite = ring.itemImage;
+                ringImage.sprite = ring.itemImage[0];
                 ringDescription.text = ring.description;
             }
             else

@@ -49,6 +49,6 @@ public class UI_EquipmentForce_item : UI_PopUp
     public void SetInfo(Item _item)
     {
         itemText = _item.itemName;
-        itemImg = _item.itemImage;
+        itemImg = _item.itemImage[0];
     }
 }

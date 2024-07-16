@@ -11,11 +11,14 @@ public class StateAttack : StateBase
     {
         Debug.Log("State Attack Enter");
         Managers.Game.player.SpumPrefabs.PlayAnimation(nameof(SPUM_AnimClipList.Attack_Normal));
+        // this.animator.GetCurrentAnimatorStateInfo(0)
     }
 
     public override void Exit()
     {
+        // Debug.Log(Managers.Game.player.SpumPrefabs._anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
         Debug.Log("State Attack Exit");
+        // UniTask
     }
 
     public override bool CanTransitState(IState state)

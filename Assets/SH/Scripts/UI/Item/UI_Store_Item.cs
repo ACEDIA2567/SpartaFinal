@@ -64,7 +64,7 @@ public class UI_Store_Item : UI_PopUp
     {
         item = _item;
 
-        itemImg = item.itemImage;
+        itemImg = item.itemImage[0];
         itemName = item.itemName;
         costText = item.soulCost.ToString();
     }

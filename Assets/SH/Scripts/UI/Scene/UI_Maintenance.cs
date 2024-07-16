@@ -10,7 +10,6 @@ public class UI_Maintenance : UI_Scene
     {
         SoulCnt = 0,
         LevelCnt,
-        CurrentState,
     }
 
     enum Images
@@ -25,11 +24,14 @@ public class UI_Maintenance : UI_Scene
         Store,
         VillageAttack,
         
-        Test, // for the test of stat on display
-    
-        GiveSoul,
-        GiveExp10,
-        LvlUp,
+        // yjkim
+        EquipWeaponT1N,
+        EquipWeaponT1R,
+        EquipWeaponT2E,
+        EquipWeaponT2L,
+        EquipArmorT1,
+        EquipArmorT2,
+        EquipRing,
     }
 
     private void Start()
@@ -49,7 +51,50 @@ public class UI_Maintenance : UI_Scene
         GetButton((int)Buttons.EquipmentForce).gameObject.BindEvent(EquipmentForce);
         GetButton((int)Buttons.Store).gameObject.BindEvent(Store);
         GetButton((int)Buttons.VillageAttack).gameObject.BindEvent(VillageAttack);
+        
 //        GetButton((int)Buttons.Test).gameObject.BindEvent(UpdatePlayerStatUI);
+        GetButton((int)Buttons.EquipWeaponT1N).gameObject.BindEvent(EquipWT1N);
+        GetButton((int)Buttons.EquipWeaponT1R).gameObject.BindEvent(EquipWT1R);
+        GetButton((int)Buttons.EquipWeaponT2E).gameObject.BindEvent(EquipWT2E);
+        GetButton((int)Buttons.EquipWeaponT2L).gameObject.BindEvent(EquipWT2L);
+        GetButton((int)Buttons.EquipArmorT1).gameObject.BindEvent(EquipAT1);
+        GetButton((int)Buttons.EquipArmorT2).gameObject.BindEvent(EquipAT2);
+    }
+
+    void EquipAT1(PointerEventData obj)
+    {
+        Item item = Managers.Resource.Load<Item>("ItemData/ItemArmorT1");
+        Managers.Game.player.Inventory.Equip(item);
+    }
+
+    void EquipAT2(PointerEventData obj)
+    {
+        Item item = Managers.Resource.Load<Item>("ItemData/ItemArmorT2");
+        Managers.Game.player.Inventory.Equip(item);
+    }
+
+    void EquipWT1N(PointerEventData obj)
+    {
+        Item item = Managers.Resource.Load<Item>("ItemData/ItemWeaponT1N");
+        Managers.Game.player.Inventory.Equip(item);
+    }
+    
+    void EquipWT1R(PointerEventData obj)
+    {
+        Item item = Managers.Resource.Load<Item>("ItemData/ItemWeaponT1R");
+        Managers.Game.player.Inventory.Equip(item);
+    }
+
+    void EquipWT2E(PointerEventData obj)
+    {
+        Item item = Managers.Resource.Load<Item>("ItemData/ItemWeaponT2E");
+        Managers.Game.player.Inventory.Equip(item);
+    }
+
+    void EquipWT2L(PointerEventData obj)
+    {
+        Item item = Managers.Resource.Load<Item>("ItemData/ItemWeaponT2L");
+        Managers.Game.player.Inventory.Equip(item);
     }
 
     private void VillageAttack(PointerEventData data)

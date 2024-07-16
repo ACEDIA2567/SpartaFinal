@@ -28,6 +28,7 @@ public class BehaviourAttack : BehaviourInput
     {
         stateMachine.ChangeState(state);
         action[(int)InputStatus.Started]?.Invoke();
+        
     }
 
     protected override void Performed(InputAction.CallbackContext context)

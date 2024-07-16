@@ -19,12 +19,6 @@ public class Player : MonoBehaviour
         StateHandler = new PlayerStateHandler();
         StatHandler = new PlayerStatHandler();
         
-        // SPUM test
         SpumPrefabs = GetComponentInChildren<SPUM_Prefabs>();
-        SPUM_Prefabs spumPrefabs = GetComponentInChildren<SPUM_Prefabs>();
-        AnimationClip[] clips = spumPrefabs.AnimationClips;
-        spumPrefabs.PlayAnimation("Attack_Normal");
-        AnimatorClipInfo[] clipInfos = spumPrefabs._anim.GetCurrentAnimatorClipInfo(0);
-        Debug.Log(clipInfos.Length);
     }
 }

@@ -52,8 +52,6 @@ public class InputMove : InputBase
             else if(i == bindingConfig.Count-1) // joystick
             {
                 bindings[i].path = $"<{nameof(InputDevices.Gamepad)}>/{bindingConfig[i].path}";
-//                bindings[i].isComposite = false;
-//                bindings[i].isPartOfComposite = true;
             }
             else
             {

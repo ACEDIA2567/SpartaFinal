@@ -15,8 +15,9 @@ public class InputAttack : InputBase
     protected override void Init()
     {
         base.Init();
-        bindingConfig.Add(("Defense","rightButton"));
-        bindingConfig.Add(("Attack","leftButton"));
+        bindingConfig.Add(("Attack","l"));
+//        bindingConfig.Add(("Defense","rightButton"));
+//        bindingConfig.Add(("Attack","leftButton"));
 
         action = new InputAction(nameof(ActionType.Attack), InputActionType.Button);
         action.expectedControlType = nameof(Button);
@@ -32,17 +33,7 @@ public class InputAttack : InputBase
             bindings[i] = new InputBinding();
             bindings[i].name = bindingConfig[i].name;
             bindings[i].action = action.name;
-//            if (i == 0) // mother binding
-//            {
-//                bindings[i].path = bindingConfig[i].path;
-//                bindings[i].isComposite = true; // is mother?
-//                bindings[i].isPartOfComposite = false; // is child?
-//            }
-//            else
-            {
-                Debug.Log("Child");
-                bindings[i].path = $"<{nameof(InputDevices.Mouse)}>/{bindingConfig[i].path}";
-            }
+            bindings[i].path = $"<{nameof(InputDevices.Keyboard)}>/{bindingConfig[i].path}";
             action.AddBinding(bindings[i]);
         }
     }
