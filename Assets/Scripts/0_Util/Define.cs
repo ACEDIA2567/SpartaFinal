@@ -18,6 +18,13 @@ public enum SceneType
     StartScene,
     MainScene,
     Count,
+<<<<<<< Updated upstream
+=======
+    Battle_SH, //테스트
+    MaintenanceScene_SH,
+    Start_SH, //테스트
+    LoadingScene
+>>>>>>> Stashed changes
 }
 
 //
