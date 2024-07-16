@@ -7,7 +7,7 @@ public class ProjectileController : MonoBehaviour
     Rigidbody2D rigid;
     public int power;
     public Vector3 direction;
-    private int speed = 3;
+    private int speed = 7;
 
     void Awake()
     {

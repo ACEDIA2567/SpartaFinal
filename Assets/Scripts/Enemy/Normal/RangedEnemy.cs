@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedEnemy : Enemy
+public class RangedEnemy : NormalEnemy
 {
     [SerializeField]
     private GameObject projectile;
@@ -25,7 +25,7 @@ public class RangedEnemy : Enemy
         else
         {
             GameObject tile = Managers.Pool.Pop(projectile, transform.parent).gameObject;
-            tile.transform.position = enemyMovement.target.position;
+            tile.transform.position = target.position;
         }
     }
 

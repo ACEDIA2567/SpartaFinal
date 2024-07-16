@@ -10,5 +10,7 @@ public class ProjectilePool : MonoBehaviour
         Managers.Pool.CreatePool(SpawnProjectile, 20);
         GameObject SpawnExplosion = Resources.Load<GameObject>($"Projectile/Explosion");
         Managers.Pool.CreatePool(SpawnExplosion, 20);
+        GameObject SpawnSoul = Resources.Load<GameObject>($"Entity/Soul");
+        Managers.Pool.CreatePool(SpawnSoul, 20);
     }
 }
