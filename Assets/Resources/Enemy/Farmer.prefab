@@ -2589,7 +2589,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 500
   m_SortAtRoot: 0
 --- !u!95 &1630644204722716989
 Animator:
@@ -2635,6 +2635,8 @@ MonoBehaviour:
     moveSpeed: 1
     soul: 2
     exp: 2
+  soul: {fileID: 5625310350294032442, guid: 15419ef44fbc2f24e88186cd0cc6e844, type: 3}
+  target: {fileID: 0}
   attackRange: {fileID: 2656567315016084491}
 --- !u!58 &131347163538444130
 CircleCollider2D:
@@ -2768,7 +2770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff102f636ba100438fc23ae0a17ba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   startPos: {x: 0, y: 0, z: 0}
   moveStop: 0
   chase: 0
