@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : NormalEnemy
+public class MeleeEnemy : Enemy
 {
     [SerializeField]
     private GameObject attackRange;

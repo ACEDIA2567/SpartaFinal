@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour
 {
-    public NormalEnemy enemy;
+    public Enemy enemy;
     Animator animator;
 
     private static readonly int isidle = Animator.StringToHash("IsIdle");
@@ -15,7 +15,7 @@ public class EnemyAnimator : MonoBehaviour
 
     private void Awake()
     {
-        enemy = GetComponent<NormalEnemy>();
+        enemy = GetComponent<Enemy>();
         animator = GetComponent<Animator>();
     }
 

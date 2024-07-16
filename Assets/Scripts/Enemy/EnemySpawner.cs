@@ -45,6 +45,5 @@ public class EnemySpawner : MonoBehaviour
     {
         enemy.transform.position = transform.position;
         enemy.GetComponentInChildren<EnemyMovement>().startPos = transform.position;
-        transform.root.GetComponent<MapManager>().AddCount();
     }
 }
