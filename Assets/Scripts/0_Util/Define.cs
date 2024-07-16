@@ -28,15 +28,23 @@ public enum InputStatus
 public enum ActionType
 {
     Idle,
+    Hit,
+    Die,
     Move,
-    JoystickDown,
-    JoystickMove,
     Attack,
     Evade,
     Skill,
-    SkillB,
     Interact,
     Count,
+}
+
+public enum SPUM_AnimClipList
+{
+    idle,
+    Run,
+    Attack_Normal,
+    Death,
+    Skill_Normal,
 }
 
 public enum AxisOptions

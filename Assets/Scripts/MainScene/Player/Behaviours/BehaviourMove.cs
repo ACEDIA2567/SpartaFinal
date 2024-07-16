@@ -8,6 +8,7 @@ public class BehaviourMove : BehaviourInput
 {
     [SerializeField] protected float speed;
     protected Rigidbody2D rb2D;
+    
     protected PlayerInputHandler handler;
     void Start()
     {
@@ -18,7 +19,7 @@ public class BehaviourMove : BehaviourInput
         speed = 5f;
         input = new InputMove();
         stateMachine = Managers.Game.player.StateHandler.stateMachine;
-        state = Managers.Game.player.StateHandler.Move;
+        state = Managers.Game.player.StateHandler.GetState(ActionType.Move);
         action = new UnityAction[(int)InputStatus.Count];
         rb2D = GetComponent<Rigidbody2D>();
 
@@ -39,6 +40,14 @@ public class BehaviourMove : BehaviourInput
     {
         // Movement
         rb2D.velocity = speed * context.ReadValue<Vector2>().normalized;
+        if (rb2D.velocity.x > 0)
+        {
+            Managers.Game.player.transform.localScale = new Vector3(-1,1,1); // default facing: left, we use Vector3.left for facing right
+        }
+        else
+        {
+            Managers.Game.player.transform.localScale = new Vector3(1, 1, 1);
+        }
             
         action[(int)InputStatus.Performed]?.Invoke();
     }
@@ -47,7 +56,7 @@ public class BehaviourMove : BehaviourInput
         // Stop
         rb2D.velocity = Vector2.zero;
         
-        stateMachine.ChangeState(Managers.Game.player.StateHandler.Idle);
+        stateMachine.ChangeState(Managers.Game.player.StateHandler.GetState(ActionType.Idle));
         action[(int)InputStatus.Canceled]?.Invoke();
     }
 }

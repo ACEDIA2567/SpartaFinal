@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 
-public class UIInputStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class UIInputJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public float Horizontal { get; set; }
     public float Vertical { get; set; }

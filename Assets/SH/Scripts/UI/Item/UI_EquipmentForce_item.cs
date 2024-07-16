@@ -29,7 +29,9 @@ public class UI_EquipmentForce_item : UI_PopUp
     }
 
     string itemText, forceBtn;
-    Image itemImg;
+    Sprite itemImg;
+
+    Item item;
 
     public override void Init()
     {
@@ -39,15 +41,14 @@ public class UI_EquipmentForce_item : UI_PopUp
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
 
-        //todo :: 각 오브젝트에 값 넣기
-        //Get<GameObject>((int)GamdObjects.StatName).GetComponent<TextMeshProUGUI>().text = statName;
+        //todo::각 오브젝트에 값 넣기
+        GetText((int)Texts.ItemText).GetComponent<TextMeshProUGUI>().text = itemText;
+        GetImage((int)Images.ItemImg).GetComponent<Image>().sprite = itemImg;
     }
 
-    // todo :: 버튼 눌렀을 때 장비 강화
-
-    // todo :: 각 slot 정보 가져오기
-    public void SetInfo() //, Image _statIcon
+    public void SetInfo(Item _item)
     {
-
+        itemText = _item.itemName;
+        itemImg = _item.itemImage[0];
     }
 }

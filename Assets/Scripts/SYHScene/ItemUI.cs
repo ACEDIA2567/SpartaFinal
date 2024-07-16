@@ -44,7 +44,7 @@ public class ItemUI : MonoBehaviour
 
             if (item != null)
             {
-                itemImages[i].sprite = item.itemImage;
+                itemImages[i].sprite = item.itemImage[0];
                 itemSoulCosts[i].text = item.soulCost.ToString();
                 itemDescriptions[i].text = item.description;
                 itemButtons[i].onClick.AddListener(() => OnItemButtonClicked(item));

@@ -34,7 +34,12 @@ public class UIManager
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.overrideSorting = true; //중첩 캔버스 내에게 본인 order에만 적용
 
-        Util.GetOrAddComponent<CanvasScaler>(gameObject);
+        // 해상도 대응을 위한 컴포넌트 추가
+        CanvasScaler canvasScaler = Util.GetOrAddComponent<CanvasScaler>(gameObject);
+        canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        canvasScaler.referenceResolution = new Vector2(1920f, 1080f);
+        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+
         Util.GetOrAddComponent<GraphicRaycaster>(gameObject);
 
         if (sort)

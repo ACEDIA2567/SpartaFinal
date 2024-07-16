@@ -1,74 +1,68 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteractionYJ : MonoBehaviour
 {
     public float activationDistance;
+    int objCnt; // objects under interaction
     GameObject targetObject;
-    public CanvasGroup actionButtonCanvasGroup;
-
-    UIController uiController;
+    CapsuleCollider2D collider2D;
+    (Vector2 offset,Vector2 size) defaultColliderConfig; // at battle map
+    (Vector2 offset,Vector2 size) wideColliderConfig; // at home
+    public bool IsHome { get; set; }
+    UI_Player uiPlayer;
 
     void Start()
     {
         activationDistance = 5f;
-        uiController = FindObjectOfType<UIController>();
-        actionButtonCanvasGroup = FindObjectOfType<CanvasGroup>();
-        SetButtonState(false);
+        objCnt = 0;
+        collider2D = GetComponent<CapsuleCollider2D>();
+        defaultColliderConfig = (new Vector2(0f,0.7f), new Vector2(1f,1.3f));
+        wideColliderConfig = (new Vector2(0f,0.7f), new Vector2(5f,1.3f));
+        IsHome = true;
+        ChangeInteractionRange(IsHome);
+        uiPlayer = Managers.UI.FindUI<UI_Player>();
     }
 
-    void Update()
-    {
-        if (targetObject != null && actionButtonCanvasGroup != null)
-        {
-            float distance = Vector3.Distance(transform.position, targetObject.transform.position);
-            if (distance <= activationDistance)
-                SetButtonState(true);
-            else
-            {
-                SetButtonState(false);
-            }
-        }
-    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerInventory inventory = Managers.Game.player.Inventory;
-        if (other.gameObject.CompareTag("UI"))
+        if(uiPlayer == null)
+            uiPlayer = Managers.UI.FindUI<UI_Player>();
+            
+        if (IsHome && objCnt == 0)
         {
-            uiController.ShowUI(
-                inventory.GetEquippedItem(ItemType.Weapon),
-                inventory.GetEquippedItem(ItemType.Armor),
-                inventory.GetEquippedItem(ItemType.Ring)
-                );
-            SetButtonState(true);
+            uiPlayer.ChangeImageTransparency(ActionType.Interact,true);
+            uiPlayer.SetButtonActivity(ActionType.Interact,true);
         }
-        
-        if(other.gameObject.name == "Alchemist_idle_0")
-            SetButtonState(true);
+        objCnt++;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("UI"))
-            uiController.HideUI();
-        if(other.gameObject.name == "Alchemist_idle_0")
-            SetButtonState(false);
+        objCnt--;
+        if (IsHome && objCnt == 0)
+        {
+            uiPlayer.ChangeImageTransparency(ActionType.Interact,false);
+            uiPlayer.SetButtonActivity(ActionType.Interact,false);
+        }
     }
 
-    void SetButtonState(bool isActive)
+    public void ChangeInteractionRange(bool ishome)
     {
-        if (isActive)
+        if (ishome)
         {
-            actionButtonCanvasGroup.alpha = 1f;
-            actionButtonCanvasGroup.interactable = true;
-            actionButtonCanvasGroup.blocksRaycasts = true;
+            collider2D.offset = wideColliderConfig.offset;
+            collider2D.size = wideColliderConfig.size;
         }
         else
         {
-            actionButtonCanvasGroup.alpha = .2f;
-            actionButtonCanvasGroup.interactable = false;
-            actionButtonCanvasGroup.blocksRaycasts = false;
+            collider2D.offset = defaultColliderConfig.offset;
+            collider2D.size = defaultColliderConfig.size;
         }
+    }
+    void SetButtonState(bool isActive)
+    {
     }
 }

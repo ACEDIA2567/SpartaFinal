@@ -10,11 +10,24 @@ public class StateMove : StateBase
     {
         Debug.Log("State Move Enter");
         Managers.Game.player.isMoving = true;
+        Managers.Game.player.SpumPrefabs.PlayAnimation(nameof(SPUM_AnimClipList.Run));
     }
 
     public override void Exit()
     {
         Debug.Log("State Move Exit");
         Managers.Game.player.isMoving = false;
+    }
+
+    public override bool CanTransitState(IState state)
+    {
+        // below two condition works same
+        //if (state.GetType() == typeof(StateDie))
+        if (state is StateDie)
+        {
+            Debug.Log($"Cannot transit to {GetType()} from {state.GetType()}");
+            return false;
+        }
+        return true;
     }
 }

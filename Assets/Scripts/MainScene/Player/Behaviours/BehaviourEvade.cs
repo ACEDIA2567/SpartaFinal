@@ -14,7 +14,7 @@ public class BehaviourEvade : BehaviourInput
     {
         input = new InputEvade();
         stateMachine = Managers.Game.player.StateHandler.stateMachine;
-        state = Managers.Game.player.StateHandler.Evade;
+        state = Managers.Game.player.StateHandler.GetState(ActionType.Evade);
         action = new UnityAction[(int)InputStatus.Count];
 
         PlayerInputHandler handler = Managers.Game.player.InputHandler;

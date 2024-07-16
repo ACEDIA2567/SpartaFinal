@@ -30,15 +30,15 @@ public class InputJoystickDown : InputBase
         bindingConfig.Add(("Pen","tip"));
         bindingConfig.Add(("Touchscreen","touch*/press"));
 
-        if (inputHandler.data[(int)ActionType.JoystickDown].Action == null)
-        {
-            action = new InputAction(nameof(ActionType.JoystickDown));
-            action.expectedControlType = nameof(Vector2);
-        }
-        else
-        {
-            action = inputHandler.data[(int)ActionType.JoystickDown].Action;
-        }
+//        if (inputHandler.data[(int)ActionType.JoystickDown].Action == null)
+//        {
+//            action = new InputAction(nameof(ActionType.JoystickDown));
+//            action.expectedControlType = nameof(Vector2);
+//        }
+//        else
+//        {
+//            action = inputHandler.data[(int)ActionType.JoystickDown].Action;
+//        }
 
         SetBindings();
     }
@@ -83,15 +83,15 @@ public class InputJoystickMove : InputBase
         bindingConfig.Add(("Pen","position"));
         bindingConfig.Add(("Touchscreen","touch*/position"));
 
-        if (inputHandler.data[(int)ActionType.JoystickMove].Action == null)
-        {
-            action = new InputAction(nameof(ActionType.JoystickMove));
-            action.expectedControlType = nameof(Vector2);
-        }
-        else
-        {
-            action = inputHandler.data[(int)ActionType.JoystickDown].Action;
-        }
+//        if (inputHandler.data[(int)ActionType.JoystickMove].Action == null)
+//        {
+//            action = new InputAction(nameof(ActionType.JoystickMove));
+//            action.expectedControlType = nameof(Vector2);
+//        }
+//        else
+//        {
+//            action = inputHandler.data[(int)ActionType.JoystickDown].Action;
+//        }
 
         SetBindings();
     }

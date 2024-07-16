@@ -20,6 +20,7 @@ public class InputMove : InputBase
         bindingConfig.Add(("Down","s"));
         bindingConfig.Add(("Left","a"));
         bindingConfig.Add(("Right","d"));
+        bindingConfig.Add(("Joystick","leftStick"));
 
         if (inputHandler.data[(int)ActionType.Move].Action == null)
         {
@@ -47,6 +48,10 @@ public class InputMove : InputBase
                 bindings[i].path = bindingConfig[i].path;
                 bindings[i].isComposite = true; // is mother?
                 bindings[i].isPartOfComposite = false; // is child?
+            }
+            else if(i == bindingConfig.Count-1) // joystick
+            {
+                bindings[i].path = $"<{nameof(InputDevices.Gamepad)}>/{bindingConfig[i].path}";
             }
             else
             {

@@ -14,7 +14,7 @@ public class BehaviourAttack : BehaviourInput
     {
         input = new InputAttack();
         stateMachine = Managers.Game.player.StateHandler.stateMachine;
-        state = Managers.Game.player.StateHandler.Attack;
+        state = Managers.Game.player.StateHandler.GetState(ActionType.Attack);
         action = new UnityAction[(int)InputStatus.Count];
 
         PlayerInputHandler handler = Managers.Game.player.InputHandler;
@@ -28,6 +28,7 @@ public class BehaviourAttack : BehaviourInput
     {
         stateMachine.ChangeState(state);
         action[(int)InputStatus.Started]?.Invoke();
+        
     }
 
     protected override void Performed(InputAction.CallbackContext context)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,13 @@ public class UI_Player : UI_Scene
     {
         BackImg = 0,
         Joystick,
+        
+        // yjkim
+        AttackBtn,
+        InteractBtn,
+        SkillBtn_1,
+        SkillBtn_2,
+        
     }
 
     enum Buttons
@@ -19,10 +27,10 @@ public class UI_Player : UI_Scene
         SkillBtn_2,
     }
 
-    private void Start()
+    void Start()
     {
+        Managers.UI.UIlist.Add(this);
         Init();
-
     }
 
     public override void Init()
@@ -59,25 +67,56 @@ public class UI_Player : UI_Scene
 
     private void SkillBtn_2(PointerEventData data)
     {
-        // todo :: ½ºÅ³2 Action
-        Debug.Log("½ºÅ³2");
+        // todo :: ï¿½ï¿½Å³2 Action
+        Debug.Log("ï¿½ï¿½Å³2");
     }
 
     private void SkillBtn_1(PointerEventData data)
     {
-        // todo :: ½ºÅ³1 Action
-        Debug.Log("½ºÅ³1");
+        // todo :: ï¿½ï¿½Å³1 Action
+        Debug.Log("ï¿½ï¿½Å³1");
     }
 
     private void InteractBtn(PointerEventData data)
     {
-        // todo :: »óÈ£ÀÛ¿ë
-        Debug.Log("»óÈ£ÀÛ¿ë");
+        // todo :: ï¿½ï¿½È£ï¿½Û¿ï¿½
+        Debug.Log("ï¿½ï¿½È£ï¿½Û¿ï¿½");
     }
 
     private void AttackBtn(PointerEventData data)
     {
         // todo :: Attack Action
-        Debug.Log("°ø°Ý");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
+        Managers.Game.player.SpumPrefabs.PlayAnimation(nameof(SPUM_AnimClipList.Attack_Normal));
+    }
+
+    public void ChangeImageTransparency(ActionType type, bool active)
+    {
+        if (type == ActionType.Attack)
+        {
+            Color color = GetImage((int)Images.AttackBtn).color;
+            color.a = active ? 1f : 50 / 255f;
+            GetImage((int)Images.AttackBtn).color = color;
+        }
+        else if (type == ActionType.Skill)
+        {
+            Color color = GetImage((int)Images.SkillBtn_1).color;
+            color.a = active ? 1f : 50 / 255f;
+            GetImage((int)Images.SkillBtn_1).color = color;
+        }
+        else if (type == ActionType.Interact)
+        {
+            Color color = GetImage((int)Images.InteractBtn).color;
+            color.a = active ? 1f : 50 / 255f;
+            GetImage((int)Images.InteractBtn).color = color;
+        }
+    }
+
+    public void SetButtonActivity(ActionType type, bool active)
+    {
+        if (type == ActionType.Interact)
+        {
+            GetButton((int)Buttons.InteractBtn).enabled = active;
+        }
     }
 }

@@ -14,6 +14,8 @@ public interface IState
 {
     public void Enter();
     public void Exit();
+
+    public bool CanTransitState(IState state);
 //    public void HandleInput();
 //    public void Update();
 //    public void FixedUpdate();
